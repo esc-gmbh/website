@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unser Team</title>
+    <link rel="stylesheet" href="team_styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo" onclick="location.href='index.html#home'">
+            <img src="img/logo.jpg" alt="Firmenlogo">
+        </div>
+        <nav>
+            <button onclick="location.href='team.html'">Unser Team</button>
+            <button onclick="location.href='contact.html'">Kontakt</button>
+            <a href="https://www.instagram.com/esc_gmbh/?igsh=YzdrMGdjZ2JnbTN5" target="_blank" class="instagram">
+                <img src="img/instagram-96.png" alt="Instagram">
+            </a>
+        </nav>
+    </header>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="team-container">
+            <img src="img/team_bar.png" alt="Team" class="team-image">
+            <div class="team-text">
+                <h2>Wilkommen bei ESC!</h2>
+                <p>Mit einem klaren Fokus auf Innovation, Präzision und Nachhaltigkeit entwickeln wir maßgeschneiderte Lösungen, die den höchsten Standards gerecht werden.</p>
+                <p>Wir sind stolz darauf, ein breites Spektrum an Projekten erfolgreich umgesetzt zu haben – von privaten Wohnhäusern bis hin zu großen Industrieanlagen. Jedes Projekt ist für uns eine neue Herausforderung, die wir mit Engagement, Kreativität und technischem Know-how angehen.</p>
+                <h2>Lassen Sie uns gemeinsam die Zukunft gestalten!</h2>
+                <h3>Effizient, innovativ und nachhaltig.</h3>
+                <P>Vertrauen Sie auf unser erfahrenes Team, das stets bereit ist, die Extra-Meile für Ihre Zufriedenheit zu gehen.</P>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hiring Section -->
+    <section class="hiring-section">
+        <div class="hiring-container">
+            <div class="hiring-text">
+                <h2>Wir stellen ein!</h2>
+                <h4>Du möchtest Teil eines innovativen, dynamischen Teams werden, das die Zukunft aktiv mitgestaltet? Dann bist du bei uns genau richtig!</h4>
+                <p>Wir bei ESC stehen für Fortschritt, Präzision und Nachhaltigkeit. Jeden Tag arbeiten wir daran, die Welt ein Stück besser zu machen – und dafür brauchen wir kreative, engagierte Köpfe wie dich!</p>
+                <h2>Was dich bei uns erwartet:</h2>
+                <P class="indented-paragraph">- Spannende Projekte in einem wachsenden Markt.</P>
+                <P class="indented-paragraph">- Ein starkes Team, das Herausforderungen gemeinsam meistert.</P>
+                <P class="indented-paragraph">- Persönliche und berufliche Weiterentwicklung.</P>
+                <P class="indented-paragraph">- Eine innovative Arbeitsatmosphäre.</P>
+                <P class="indented-paragraph">- Wertschätzung, Fairness und Flexibilität.</P>
+                <button class="apply-button" onclick="location.href='contact.html'">Jetzt bewerben</button>
+            </div>
+            <img src="img/hiring_bar.png" alt="Hiring" class="hiring-image">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <p>&copy; 2024 ESC. Alle Rechte vorbehalten.</p>
+            <a onclick="location.href='impressum.html'"href="#impressum">Impressum</a>
+            <a onclick="location.href='datenschutz.html'"href="#datenschutz">Datenschutz</a>
+            <a onclick="location.href='agb.html'"href="#agb">AGB</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Team Section Animation
+            const teamImage = document.querySelector('.team-image');
+            const teamText = document.querySelector('.team-text');
+
+            setTimeout(() => {
+                teamImage.classList.add('animate-in');
+                teamText.classList.add('text-visible');
+            }, 500);
+
+            // Hiring Section Animation
+            const hiringImage = document.querySelector('.hiring-image');
+            const hiringText = document.querySelector('.hiring-text');
+
+            setTimeout(() => {
+                hiringText.classList.add('text-visible');
+            }, 1500); // Text fliegt zuerst rein
+
+            setTimeout(() => {
+                hiringImage.classList.add('animate-in');
+            }, 2000); // Bild fliegt später rein
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

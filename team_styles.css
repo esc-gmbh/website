@@ -1,0 +1,175 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ffffff, #d3d3d3);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #777777;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo img {
+    height: 50px;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav button {
+    background: linear-gradient(135deg, #a9a9a9, #a9a9a9);
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 18px;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+}
+
+nav button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #ff4500, #ff7f50);
+}
+
+.instagram img {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: transform 0.5s ease;
+}
+
+.instagram img:hover {
+    transform: scale(1.1);
+}
+
+/* Section Styles */
+.team-section, .hiring-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+    background-color: #c7c7c7;
+    overflow: hidden;
+    position: relative;
+    padding: 0px 0;
+}
+
+.team-container, .hiring-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 2000px;
+    width: 100%;
+    position: relative;
+    gap: 10px;
+}
+
+/* Team Image Animation */
+.team-image, .hiring-image {
+    width: 70%;
+    height: auto;
+    opacity: 0;
+    transition: transform 2s ease-out, opacity 1s ease-out;
+    filter: drop-shadow(0 40px 20px rgba(0, 0, 0, 0.6)); 
+}
+
+.team-image {
+    transform: translateX(-100%);
+}
+
+.hiring-image {
+    transform: translateX(100%);
+}
+
+.team-image.animate-in, .hiring-image.animate-in {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Text Animation */
+.team-text, .hiring-text {
+    flex: 1;
+    text-align: left;
+    opacity: 0;
+    transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+.team-text {
+    transform: translateX(50%);
+}
+
+.hiring-text {
+    transform: translateX(-50%);
+}
+
+.team-text.text-visible, .hiring-text.text-visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Text Styling */
+.team-text h2, .hiring-text h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.team-text p, .hiring-text p {
+    font-size: 18px;
+    color: #555;
+}
+
+.indented-paragraph {
+    text-indent: 30px; /* Gibt die Größe der Einrückung an */
+}
+
+.apply-button {
+    background: linear-gradient(135deg, #ff7f50, #ff4500);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.apply-button:hover {
+    background: linear-gradient(135deg, #ff4500, #ff7f50);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+    background-color: #777777;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: #ffffff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

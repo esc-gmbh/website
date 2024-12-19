@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum</title>
+    <link rel="stylesheet" href="impressum_styles.css">
+    <style>
+        .impressum-section {
+            max-width: 800px;
+            height: 900px;
+            margin: 50px auto;
+            padding: 50px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.6);
+            font-size: 18px;
+            line-height: 1.8;
+            color: #505050;
+        }
+
+        .impressum-section h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .impressum-details {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 10px;
+            line-height: 1.8;
+        }
+
+        .impressum-details .label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .impressum-details .value {
+            color: #333;
+        }
+
+        .impressum-section a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .impressum-section a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo" onclick="scrollToTop()">
+            <img src="img/logo.jpg" alt="Firmenlogo">
+        </div>
+        <nav>
+            <button onclick="location.href='index.html'">Home</button>
+            <button onclick="location.href='team.html'">Unser Team</button>
+            <button onclick="location.href='contact.html'">Kontakt</button>
+            <a href="https://www.instagram.com/esc_gmbh/?igsh=YzdrMGdjZ2JnbTN5" target="_blank" class="instagram">
+                <img src="img/instagram-96.png" alt="Instagram">
+            </a>
+        </nav>
+    </header>
+
+    <!-- Impressum Section -->
+    <section class="impressum-section">
+        <h1>Impressum</h1>
+        <div class="impressum-details">
+            <div class="label">Firma:</div>
+            <div class="value">ESC GmbH</div>
+
+            <div class="label">Rechtsform:</div>
+            <div class="value">Gesellschaft mit beschränkter Haftung</div>
+
+            <div class="label">Tätigkeit:</div>
+            <div class="value">Entwicklung und Herstellung und Vertrieb von Energietechnologien/Elektrotechnik und -anlagen, sowie der Handel mit Waren aller Art</div>
+
+            <div class="label">UID:</div>
+            <div class="value">ATU80687749</div>
+
+            <div class="label">Firmenbuch:</div>
+            <div class="value">FN 626164 f</div>
+
+            <div class="label">Gericht:</div>
+            <div class="value">Landesgericht für Zivilrechtssachen Graz</div>
+
+            <div class="label">Adresse:</div>
+            <div class="value">Stadionstraße 1c, 8572 Bärnbach</div>
+
+            <div class="label">E-Mail:</div>
+            <div class="value"><a href="mailto:office@esc-gmbh.at">office@esc-gmbh.at</a></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <p>&copy; 2024 ESC. Alle Rechte vorbehalten.</p>
+            <a href="impressum.html">Impressum</a>
+            <a onclick="location.href='datenschutz.html'"href="#datenschutz">Datenschutz</a>
+            <a onclick="location.href='agb.html'"href="#agb">AGB</a>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

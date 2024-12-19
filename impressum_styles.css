@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ffffff, #d3d3d3);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #777777;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 70px; /* Einheitliche Höhe */
+}
+
+.logo img {
+    height: 50px;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav button {
+    background: linear-gradient(135deg, #a9a9a9, #a9a9a9);
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 18px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+nav button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #ff4500, #ff7f50);
+}
+
+.instagram img {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
+}
+
+.instagram img:hover {
+    transform: scale(1.1);
+}
+
+.impressum-section {
+    padding: 40px;
+    background-color: #ffffff;
+    margin: 50px auto;
+    width: 70%;
+    max-width: 1200px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.impressum-section h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.impressum-details {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+    line-height: 1.8;
+    font-size: 18px;
+    color: #555;
+}
+
+.impressum-details .label {
+    font-weight: bold;
+    color: #333;
+}
+
+.impressum-details .value {
+    color: #505050;
+}
+
+.impressum-section a {
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.impressum-section a:hover {
+    color: #003399;
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #777777;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer a {
+    color: #ffffff;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

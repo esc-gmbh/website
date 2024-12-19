@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESC</title>
+    <link rel="stylesheet" href="index_styles.css">
+</head>
+<body>
+<header>
+    <div class="logo" onclick="scrollToTop()">
+        <img src="img/logo.jpg" alt="Firmenlogo">
+    </div>
+    <nav>
+
+        <button onclick="location.href='team.html'">Unser Team</button>
+        <button onclick="location.href='contact.html'">Kontakt</button>
+        <a href="https://www.instagram.com/esc_gmbh/?igshid=YzdrMGdjZ2JnbTN5" target="_blank" class="instagram">
+            <img src="img/instagram-96.png" alt="Instagram">
+        </a>
+    </nav>
+</header>
+
+
+    <section id="home" class="title-section">
+        <img src="img/ESC_logo_transparent.png" alt="ESC Logo" class="animated-image">
+        <div class="welcome-text">Innovative solutions for a sustainable future.</div>
+    </section>
+
+    <!-- Bereich mit großen Kreisen -->
+    <section class="circle-section">
+        <div class="circle-container">
+            <div class="circle">
+                <div class="circle-inner">
+                    <div class="circle-front">
+                        <img src="img/pv.png" alt="Ladestation">
+                    </div>
+                    <div class="circle-back">
+                        <h3>Nachhaltige Lösungen für Ihre Zukunft</h3>
+                        <p class="additional-text">Von der Planung bis zur Installation – alles aus einer Hand.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="circle">
+                <div class="circle-inner">
+                    <div class="circle-front">
+                        <img src="img/socket.png" alt="socket">
+                    </div>
+                    <div class="circle-back">
+                        <h3>Elektroinstallation und Wartung</h3>
+                        <p class="additional-text">Sicherheit und Zuverlässigkeit stehen bei uns an erster Stelle.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="circle">
+                <div class="circle-inner">
+                    <div class="circle-front">
+                        <img src="img/collector.png" alt="PV">
+                    </div>
+                    <div class="circle-back">
+                        <h3>Effiziente PV-Systeme</h3>
+                        <p class="additional-text">Maximale Energieeffizienz für ein nachhaltiges Zuhause.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="circle-container">
+            <div class="circle">
+                <div class="circle-inner">
+                    <div class="circle-front">
+                        <img src="img/smarthome.png" alt="SmartHome">
+                    </div>
+                    <div class="circle-back">
+                        <h3>Smart Home für Komfort</h3>
+                        <p class="additional-text">Intelligente Technologien für mehr Lebensqualität.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="circle">
+                <div class="circle-inner">
+                    <div class="circle-front">
+                        <img src="img/check.png" alt="Beratung">
+                    </div>
+                    <div class="circle-back">
+                        <h3>Sichere elektrische Prüfungen.</h3>
+                        <p class="additional-text">Geprüft, geschützt und garantiert sicher.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-us" class="content-section">
+        <div class="text">
+            <h1>Willkommen auf unserer Website!</h1>
+            <h3>Ihrem Partner für moderne Elektrotechnik und innovative Lösungen. </h3>
+            <p style="margin-bottom: 100px;">
+                Ob für private, gewerbliche oder industrielle Anwendungen – wir setzen auf nachhaltige Technologien, die den Weg in eine vernetzte, energieeffiziente Zukunft ebnen
+            </p>
+            <div class="address">
+                <h5>Adresse</h5>
+                <p>Stadionstraße 1c</p>
+                <p style="margin-bottom: 20px;">8572 Bärnbach</p>
+                <h5>Öffnungszeiten</h5>
+                <p>8:00-16:00</p>
+                <p style="margin-bottom: 20px;">________________</p>
+                <p>office@esc-gmbh.at</p>
+            </div>
+        </div>
+        <div class="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4528.968712455194!2d15.127593777594756!3d47.07198567114594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476fd35292636abb%3A0x5a64690cba72c6ca!2sStadionstra%C3%9Fe%201C%2C%208572%20B%C3%A4rnbach!5e1!3m2!1sde!2sat!4v1734215214491!5m2!1sde!2sat" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                
+        </div>
+    </section>
+    
+
+    <footer class="footer-section">
+        <div class="footer-content">
+            <p>&copy; 2024 ESC. Alle Rechte vorbehalten.</p>
+            <a onclick="location.href='impressum.html'"href="#impressum">Impressum</a>
+            <a onclick="location.href='datenschutz.html'"href="#datenschutz">Datenschutz</a>
+            <a onclick="location.href='agb.html'"href="#agb">AGB</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const circles = document.querySelectorAll(".circle");
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add("animate");
+                            observer.unobserve(entry.target);
+                        }, index * 200); // Zeitversetzte Animation
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            circles.forEach(circle => observer.observe(circle));
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
