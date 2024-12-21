@@ -353,6 +353,7 @@ footer a:hover {
         height: auto;
         padding: 10px;
         width: 98%;
+        text-align: center; /* Zentriert Text horizontal */
     }
 
     .content-section .text, .content-section .map {
