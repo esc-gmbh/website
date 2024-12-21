@@ -67,7 +67,7 @@ nav button:hover {
 
 .title-section {
     position: relative;
-    background: url('img/thunder.png') no-repeat center center;
+    /*background: url('img/thunder.png') no-repeat center center;*/
     background-size: cover;
     color: rgb(255, 255, 0);
     text-align: bottom;
@@ -274,11 +274,10 @@ footer a:hover {
         background: linear-gradient(to bottom, #ffffff, #d3d3d3);
         overflow-x: hidden; /* Verhindert horizontales Scrollen */
     }
-    header {
+   header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 10px 20px;
         background-color: #777777;
         position: sticky;
         top: 0;
