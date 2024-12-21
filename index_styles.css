@@ -348,8 +348,19 @@ footer a:hover {
     }
 
     .content-section {
-         flex-direction: column;
-        /*height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 100px;
+        padding: 10px 20px;
+        background: #dadada;
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
+        /*flex-direction: column;
+        height: auto;
         padding: 10px;
         width: 98%;
         text-align: center;  Zentriert Text horizontal */
