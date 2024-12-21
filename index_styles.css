@@ -300,27 +300,27 @@ footer a:hover {
     }
 
     .title-section {
-        height: 600px; /* Höhe für mobile Endgeräte angepasst */
+        height: 800px; /* Höhe für mobile Endgeräte angepasst */
         text-align: center;
         padding: 20px;
     }
 
     .title-section .animated-image {
-        width: 80%;
+        width: 100%;
         margin-top: 100px;
     }
 
     .title-section .welcome-text {
         font-size: 30px;
-        bottom: 400px;
-        margin-top: 20px;
+        bottom: 500px;
+        margin-top: 10px;
     }
 
 .circle-section {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 60px;
+    gap: 100px;
     padding: 10px 20px;
     background: #dadada;
     position: relative;
@@ -328,7 +328,7 @@ footer a:hover {
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    height: 1600px;
+    height: 2200px;
 }
 
     .circle {
