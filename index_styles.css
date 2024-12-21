@@ -318,9 +318,10 @@ footer a:hover {
     }
 
     .title-section .welcome-text {
-        font-size: 30px;
+        font-size: 24px;
         bottom: 500px;
         margin-top: 10px;
+        padding: 20px;
     }
 
 .circle-section {
@@ -361,7 +362,7 @@ footer a:hover {
     }
 
     iframe {
-        height: 200px;
+        height: 250px;
         padding: 10px;
         width: 95%;
         
