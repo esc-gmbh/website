@@ -348,11 +348,11 @@ footer a:hover {
     }
 
     .content-section {
-        flex-direction: column;
-        height: auto;
+         flex-direction: column;
+        /*height: auto;
         padding: 10px;
         width: 98%;
-        text-align: center; /* Zentriert Text horizontal */
+        text-align: center;  Zentriert Text horizontal */
     }
 
     .content-section .text, .content-section .map {
