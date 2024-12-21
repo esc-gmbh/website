@@ -316,14 +316,14 @@ footer a:hover {
     }
 
     .circle-section {
-        height: 1600px; /* Höhe für mobile Endgeräte angepasst */
-        padding: 100px 20px;
-        gap: 20px;
+        height: 1400px; /* Höhe für mobile Endgeräte angepasst */
+        padding: 10px 10px;
+        gap: 50px;
     }
 
     .circle {
-        width: 400px;
-        height: 400px;
+        width: 300px;
+        height: 300px;
     }
 
     .circle-front img, .circle-back {
