@@ -68,7 +68,7 @@ nav button:hover {
 .title-section {
     position: relative;
     /*background: url('img/thunder.png') no-repeat center center;*/
-    background-size: cover;
+    /*background-size: cover;*/
     color: rgb(255, 255, 0);
     text-align: bottom;
     display: flex;
@@ -79,7 +79,7 @@ nav button:hover {
 }
 
 .title-section .animated-image {
-    width: 1000px;
+    width: 200px;
     height: auto;
     margin-bottom: 10px;
 }
