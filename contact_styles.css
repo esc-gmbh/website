@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #d3d3d3;
+    background-color: #f8f8f8;
 }
 
 header {
@@ -36,20 +36,20 @@ nav button {
     cursor: pointer;
     border-radius: 50px;
     font-size: 18px;
-    transition: transform 0.5s ease, background 0.5s ease;
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 nav button:hover {
     transform: translateY(-5px);
-    background: linear-gradient(135deg, #ff4500, #ff7f50);
+    background: linear-gradient(135deg, #f5ff6e, #fbff00);
 }
 
 .instagram img {
-    height: 50px;
-    width: 50px;
+    height: 35px;
+    width: 35px;
     cursor: pointer;
-    margin-left: 5px;
-    transition: transform 0.5s ease;
+    margin-left: 15px;
+    transition: transform 0.3s ease;
 }
 
 .instagram img:hover {
@@ -57,57 +57,83 @@ nav button:hover {
 }
 
 /* Kontaktformular */
+/* Kontaktformular */
 .content-section {
-    padding: 40px;
+    padding: 40px 20px;
     background-color: #ffffff;
-    border-radius: 15px;
-    margin: 100px auto;
+    border-radius: 10px;
+    margin: 50px auto;
     width: 60%;
-    max-width: 1000px;
-    box-shadow: 0 50px 50px rgba(0, 0, 0, 0.5);
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-height: 500px; /* Bereich zwischen Header und Footer verlängern */
 }
 
 h1 {
-    text-align: center;
+    font-size: 28px;
     color: #333;
+    margin-bottom: 5px;
+}
+
+.subheading {
+    font-size: 16px;
+    color: #666;
     margin-bottom: 20px;
 }
 
-form {
+.contact-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-label {
-    font-weight: bold;
+.form-row {
+    display: flex;
+    gap: 15px;
 }
 
 input[type="text"],
 input[type="email"],
 textarea {
-    width: 100%;
+    width: 100%; /* Einheitliche Breite */
     padding: 15px;
     border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 18px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: Arial, sans-serif; /* Gleicher Stil wie bei den Textfeldern */
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    box-sizing: border-box; /* Bezieht Padding in die Breite ein */
 }
 
-input[type="submit"] {
-    background-color: #ff7f50 ;
-    color: white;
-    border: none;
+textarea {
+    resize: none;
+    height: 250px; /* Angemessene Höhe für das Textfeld */
+}
+
+input:focus,
+textarea:focus {
+    border-color: #ff9100;
+    background-color: #fff;
+    outline: none;
+}
+
+button {
+    background-color: #aeff00;
+    color: black;
     padding: 15px 30px;
-    border-radius: 8px;
-    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-input[type="submit"]:hover {
-    background-color: #ffa600;
+button:hover {
+    background-color: #eaff00;
+    transform: translateY(-3px);
 }
-
 /* Footer */
 footer {
     background-color: #777777;
@@ -126,9 +152,12 @@ footer a:hover {
     text-decoration: underline;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     .content-section {
         width: 90%;
-        padding: 20px;
+    }
+    .form-row {
+        flex-direction: column;
     }
 }
