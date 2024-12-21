@@ -320,15 +320,17 @@ footer a:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
-    padding: 180px 20px;
+    gap: 60px;
+    padding: 10px 20px;
     background: #dadada;
     position: relative;
     z-index: 1;
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
+    height: 1600px;
 }
+
 
     .circle {
         width: 300px;
