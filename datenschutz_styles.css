@@ -42,14 +42,14 @@ nav button {
 nav button:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(135deg, #ff4500, #ff7f50);
+    background: linear-gradient(135deg, #f5ff6e, #fbff00);
 }
 
 .instagram img {
-    height: 50px; /* Höhe des Instagram-Bildes */
-    width: 50px;  /* Breite des Instagram-Bildes */
+    height: 35px; /* Höhe des Instagram-Bildes */
+    width: 35px;  /* Breite des Instagram-Bildes */
     cursor: pointer;
-    margin-left: 5px;
+    margin-left: 15px;
     transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
 }
 
