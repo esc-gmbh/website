@@ -125,7 +125,16 @@ footer a:hover {
         grid-template-columns: 1fr 2fr;
         gap: 5px;
         line-height: 1.8;
-        font-size: 16px;
+        font-size: 14px;
         color: #555;
+    }
+    .impressum-section {
+        padding: 60px;
+        background-color: #ffffff;
+        margin: 50px auto;
+        width: 70%;
+        max-width: 1200px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.0);
+        border-radius: 10px;
     }
 }
