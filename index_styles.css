@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(to bottom, #ffffff, #d3d3d3);
+    overflow-x: hidden; /* Verhindert horizontales Scrollen */
 }
 
 @font-face {
@@ -305,7 +306,7 @@ footer a:hover {
     }
 
     .title-section .animated-image {
-        width: 90%;
+        width: 80%;
         margin-top: 100px;
     }
 
@@ -315,11 +316,19 @@ footer a:hover {
         margin-top: 20px;
     }
 
-    .circle-section {
-        height: 1400px; /* Höhe für mobile Endgeräte angepasst */
-        padding: 10px 10px;
-        gap: 50px;
-    }
+.circle-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 180px 20px;
+    background: #dadada;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
 
     .circle {
         width: 300px;
@@ -334,16 +343,20 @@ footer a:hover {
         flex-direction: column;
         height: auto;
         padding: 10px;
+        width: 98%;
     }
 
     .content-section .text, .content-section .map {
         flex: 1;
         margin-bottom: 20px;
+
     }
 
     iframe {
-        width: 95%;
         height: 200px;
+        padding: 10px;
+        width: 95%;
+        
     }
 
     footer {
