@@ -138,8 +138,8 @@ nav button:hover {
 }
 
 .apply-button {
-    background: linear-gradient(135deg, #ff7f50, #ff4500);
-    color: white;
+    background: linear-gradient(135deg, #f5ff6e, #fbff00);
+    color: black;
     border: none;
     padding: 15px 30px;
     font-size: 18px;
@@ -151,7 +151,7 @@ nav button:hover {
 }
 
 .apply-button:hover {
-    background: linear-gradient(135deg, #ff4500, #ff7f50);
+    background: linear-gradient(135deg, #fbff00, #f5ff6e);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -172,4 +172,22 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+@media (max-width: 768px) {
+    .team-container, .hiring-container {
+        flex-direction: column;
+    }
+
+    .team-image, .hiring-image {
+        width: 100%;
+    }
+
+    .team-text, .hiring-text {
+        text-align: center;
+    }
+
+    .team-section, .hiring-section {
+        height: auto;
+        padding: 20px;
+    }
 }
