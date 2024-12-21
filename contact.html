@@ -13,7 +13,7 @@
             <img src="img/logo.jpg" alt="Firmenlogo">
         </div>
         <nav>
-            <button onclick="location.href='team.html'">Unser Team</button>
+            <button onclick="location.href='team.html'">Team</button>
             <button onclick="location.href='contact.html'">Kontakt</button>
             <a href="https://www.instagram.com/esc_gmbh/?igsh=YzdrMGdjZ2JnbTN5" target="_blank" class="instagram">
                 <img src="img/instagram-96.png" alt="Instagram">
@@ -23,24 +23,19 @@
 
     <!-- Kontaktformular -->
     <section id="kontakt" class="content-section">
-        <h1>Kontaktformular</h1>
-        <form action="mailto:xxx@gmx.at" method="POST" enctype="text/plain">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" placeholder="Vor- und Nachname" required>
-
-            <label for="email">E-Mail:</label>
-            <input type="email" id="email" name="email" placeholder="" required>
-
-            <label for="phone">Telefonnummer:</label>
-            <input type="text" id="phone" name="phone" placeholder="" unrequired>
-
-            <label for="subject">Betreff:</label>
-            <input type="text" id="subject" name="subject" placeholder="" unrequired>
-
-            <label for="message">Nachricht:</label>
-            <textarea id="message" name="message" rows="8" placeholder="" required></textarea>
-
-            <input type="submit" value="Absenden">
+        <h1>Kontakt</h1>
+        <p class="subheading">für Ihr Anliegen</p>
+        <form action="https://formspree.io/f/{form_id}" method="POST" class="contact-form">
+            <div class="form-row">
+                <input type="text" id="vorname" name="vorname" placeholder="Vorname" required>
+                <input type="text" id="nachname" name="nachname" placeholder="Nachname" required>
+            </div>
+            <div class="form-row">
+                <input type="email" id="email" name="email" placeholder="E-Mail" required>
+                <input type="text" id="phone" name="phone" placeholder="Telefonnummer (optional)">
+            </div>
+            <textarea id="message" name="message" rows="5" placeholder="Schreiben Sie Ihre Nachricht hier ..." required></textarea>
+            <button type="submit">Senden</button>
         </form>
     </section>
 
@@ -48,9 +43,9 @@
     <footer class="footer-section">
         <div class="footer-content">
             <p>&copy; 2024 ESC. Alle Rechte vorbehalten.</p>
-            <a onclick="location.href='impressum.html'"href="#impressum">Impressum</a>
-            <a onclick="location.href='datenschutz.html'"href="#datenschutz">Datenschutz</a>
-            <a onclick="location.href='agb.html'"href="#agb">AGB</a>
+            <a onclick="location.href='impressum.html'" href="#impressum">Impressum</a>
+            <a onclick="location.href='datenschutz.html'" href="#datenschutz">Datenschutz</a>
+            <a onclick="location.href='agb.html'" href="#agb">AGB</a>
         </div>
     </footer>
 </body>
