@@ -135,20 +135,56 @@ button:hover {
     transform: translateY(-3px);
 }
 /* Footer */
-footer {
+.footer-section {
     background-color: #777777;
     color: #fff;
-    padding: 20px;
+    padding: 5px;
     text-align: center;
 }
 
-footer a {
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.footer-info p {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.footer-info a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.footer-info a:hover {
+    text-decoration: underline;
+}
+
+
+.footer-links {
+    margin-bottom: 5px;
+}
+
+.footer-links a {
     color: #ffffff;
     margin: 0 10px;
     text-decoration: none;
 }
 
-footer a:hover {
+.footer-links a:hover {
     text-decoration: underline;
 }
 
