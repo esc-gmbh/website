@@ -106,6 +106,7 @@ nav button:hover {
     text-align: left;
     opacity: 0;
     transition: transform 1s ease-out, opacity 1s ease-out;
+    margin: 15px;
 }
 
 .team-text {
@@ -222,6 +223,7 @@ nav button:hover {
 
     .team-text, .hiring-text {
         text-align: center;
+    
     }
 
     .team-section, .hiring-section {
