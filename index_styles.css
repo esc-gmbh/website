@@ -286,11 +286,6 @@ nav button:hover {
     text-decoration: underline;
 }
 
-.footer-icon {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
-}
 
 .footer-links {
     margin-bottom: 5px;
@@ -416,9 +411,5 @@ nav button:hover {
         font-size: 14px;
         padding: 10px;
     }
-    .footer-icon {
-        width: 8px;
-        height: 8px;
-        margin-right: 5px;
-    }
+
 }
