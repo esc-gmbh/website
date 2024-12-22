@@ -87,7 +87,7 @@ nav button:hover {
 
 .title-section .welcome-text {
     font-family: 'Roboto', Arial, sans-serif;
-    font-size:30px;
+    font-size:60px;
     color: #eeff00;
     text-transform: uppercase;
     font-weight: bold;
@@ -417,3 +417,80 @@ nav button:hover {
     }
 
 }
+
+@media screen and (min-width: 2000px) {
+    .title-section {
+        height: 1200px;    
+        flex-direction: column;
+    }
+
+    .title-section .animated-image {
+        width: 1200px;
+        height: auto;
+        margin-bottom: 400px;
+    
+    }
+    
+    .title-section .welcome-text {
+        font-family: 'Roboto', Arial, sans-serif;
+        font-size:80px;
+        color: #eeff00;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-top: 20px;
+        letter-spacing: 1px;
+        position: absolute;
+        bottom: 300px;
+        align-items: center;
+        justify-content: center;
+    
+    }
+}
+@media screen and (min-width: 769px) and (max-width: 2000px) {
+    .title-section {
+        height: 1000px;    
+        flex-direction: column;
+    }
+
+    .title-section .animated-image {
+        width: 600px;
+        height: auto;
+        margin-bottom: 300px;
+    }
+
+    .title-section .welcome-text {
+        font-family: 'Roboto', Arial, sans-serif;
+        font-size:30px;
+        color: #eeff00;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-top: 20px;
+        letter-spacing: 1px;
+        position: absolute;
+        bottom: 400px;
+        text-align: center;
+    }
+    .content-section {
+        display: flex;
+        height: auto;
+        padding: 30px;
+        justify-content: space-between;
+        background-color: #ffffff; /* Weißer Hintergrund */
+        color: #000;
+        font-size: 24px;
+        flex-wrap: wrap;
+        position: relative; /* Damit es unter dem Schnitt korrekt angezeigt wird */
+        z-index: 1;
+    }
+    .content-section .text, .content-section .map {
+        flex: 1;
+        margin-bottom: 10px;
+
+    }
+    .content-section .map {
+        flex: 1;
+        margin: 20px;
+        width: 80%;
+    }
+}
+
