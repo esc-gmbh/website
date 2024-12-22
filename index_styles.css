@@ -346,14 +346,14 @@ nav button:hover {
     }
 
     .title-section {
-        height: 800px; /* Höhe für mobile Endgeräte angepasst */
+        height: 700px; /* Höhe für mobile Endgeräte angepasst */
         text-align: center;
         padding: 20px;
     }
 
     .title-section .animated-image {
         width: 100%;
-        margin-top: 20px;
+        margin-top: 200px;
     }
 
     .title-section .welcome-text {
