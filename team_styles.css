@@ -180,6 +180,8 @@ footer a:hover {
 
     .team-image, .hiring-image {
         width: 100%;
+        padding: 30px;
+
     }
 
     .team-text, .hiring-text {
@@ -188,6 +190,9 @@ footer a:hover {
 
     .team-section, .hiring-section {
         height: auto;
-        padding: 20px;
+        padding: 10px;
+        background-color: #c7c7c7;
+        
+
     }
 }
