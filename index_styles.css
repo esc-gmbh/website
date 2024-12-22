@@ -348,23 +348,14 @@ footer a:hover {
     }
 
     .content-section {
-       /* display: flex;*/
         height: auto;
         padding: 5px;
-        /*justify-content: space-between;*/
         background-color: #ffffff; /* Weißer Hintergrund */
         color: #000;
         font-size: 20px;
-        /*flex-wrap: wrap;*&
-       /* position: relative;  Damit es unter dem Schnitt korrekt angezeigt wird */
         z-index: 1;
         text-align: center;
         flex-direction: column;
-        
-        /*flex-direction: column;
-        height: auto;
-        padding: 10px;
-        text-align: center;  Zentriert Text horizontal */
     }
 
     .content-section .text, .content-section .map {
