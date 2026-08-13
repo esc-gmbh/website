@@ -347,6 +347,32 @@ nav button:hover {
     font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
+    min-width: 140px;
+}
+
+@media screen and (max-width: 768px) {
+    .cookie-banner {
+        padding: 14px 16px;
+    }
+
+    .cookie-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .cookie-actions {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .cookie-actions button {
+        width: 100%;
+        min-width: 0;
+    }
 }
 
 #accept-cookies {
