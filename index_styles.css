@@ -350,7 +350,7 @@ nav button:hover {
     min-width: 140px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
     .cookie-banner {
         padding: 14px 16px;
     }
