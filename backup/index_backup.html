@@ -116,7 +116,7 @@
 
     <footer class="footer-section">
         <div class="footer-content">
-            <p>&copy; 2024 ESC. Alle Rechte vorbehalten.</p>
+            <p>&copy; <span id="currentYear"></span> ESC. Alle Rechte vorbehalten.</p>
             <a onclick="location.href='impressum.html'"href="#impressum">Impressum</a>
             <a href="#datenschutz">Datenschutz</a>
             <a onclick="location.href='agb.html'"href="#agb">AGB</a>
@@ -124,6 +124,8 @@
     </footer>
 
     <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
         document.addEventListener("DOMContentLoaded", () => {
             const circles = document.querySelectorAll(".circle");
 

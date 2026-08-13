@@ -94,6 +94,9 @@
 
             <div class="label">E-Mail:</div>
             <div class="value"><a href="mailto:office@esc-gmbh.at">office@esc-gmbh.at</a></div>
+
+            <div class="label">Telefonnummer:</div>
+            <div class="value">+43 677 / 614 71585</div>
         </div>
     </section>
 
@@ -113,11 +116,13 @@
                 <a onclick="location.href='datenschutz.html'" href="#datenschutz">Datenschutz</a>
                 <a onclick="location.href='agb.html'" href="#agb">AGB</a>
             </div>
-            <p>&copy; 2024 ESC. Alle Rechte vorbehalten.</p>
+            <p>&copy; <span id="currentYear"></span> ESC. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
     <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }

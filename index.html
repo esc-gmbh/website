@@ -177,13 +177,25 @@
             <h5>Öffnungszeiten</h5>
             <p>8:00-16:00</p>
             <p style="margin-bottom: 20px;">________________</p>
-            <p>office@esc-gmbh.at</p>
+            <h5>Kontakt</h5>
+            <p><a href="https://wa.me/4367761471585" target="_blank" rel="noopener noreferrer">+43 677 / 614 71585</a></p>
+            <p style="margin-bottom: 20px;"><a href="mailto:office@esc-gmbh.at">office@esc-gmbh.at</a></p>
         </div>
     </div>
     <div class="map">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4528.968712455194!2d15.127593777594756!3d47.07198567114594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476fd35292636abb%3A0x5a64690cba72c6ca!2sStadionstra%C3%9Fe%201C%2C%208572%20B%C3%A4rnbach!5e1!3m2!1sde!2sat!4v1734215214491!5m2!1sde!2sat" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div> 
 </section> 
+
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis">
+    <div class="cookie-content">
+        <p>Wir verwenden Cookies, um die Website zu verbessern und die Nutzung zu analysieren. Ihre Auswahl wird lokal gespeichert.</p>
+        <div class="cookie-actions">
+            <button id="accept-cookies" type="button">Akzeptieren</button>
+            <button id="decline-cookies" class="cookie-button-secondary" type="button">Nur notwendig</button>
+        </div>
+    </div>
+</div>
 
 <footer class="footer-section">
     <div class="footer-content">
@@ -200,11 +212,37 @@
             <a onclick="location.href='datenschutz.html'" href="#datenschutz">Datenschutz</a>
             <a onclick="location.href='agb.html'" href="#agb">AGB</a>
         </div>
-        <p>&copy; 2024 ESC. Alle Rechte vorbehalten.</p>
+        <p>&copy; <span id="currentYear"></span> ESC. Alle Rechte vorbehalten.</p>
     </div>
 </footer>
 
 <script>
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+    const cookieBanner = document.getElementById('cookie-banner');
+    const cookieKey = 'esc_cookie_consent';
+
+    function hideCookieBanner() {
+        if (cookieBanner) {
+            cookieBanner.style.display = 'none';
+        }
+    }
+
+    const savedCookieChoice = localStorage.getItem(cookieKey);
+    if (savedCookieChoice) {
+        hideCookieBanner();
+    }
+
+    document.getElementById('accept-cookies')?.addEventListener('click', () => {
+        localStorage.setItem(cookieKey, 'accepted');
+        hideCookieBanner();
+    });
+
+    document.getElementById('decline-cookies')?.addEventListener('click', () => {
+        localStorage.setItem(cookieKey, 'declined');
+        hideCookieBanner();
+    });
+
     document.addEventListener("DOMContentLoaded", () => {
         const circles = document.querySelectorAll(".circle");
 
