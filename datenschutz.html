@@ -29,6 +29,7 @@
         <p>ESC GmbH<br>
         Stadionstraße 1c, 8572 Bärnbach<br>
         E-Mail: <a href="mailto:office@esc-gmbh.at">office@esc-gmbh.at</a><br>
+        Telefon: +43 677 / 614 71585<br><br>
         </p>
 
         <h2>1. Allgemeines</h2>
@@ -98,11 +99,13 @@
                 <a onclick="location.href='datenschutz.html'" href="#datenschutz">Datenschutz</a>
                 <a onclick="location.href='agb.html'" href="#agb">AGB</a>
             </div>
-            <p>&copy; 2024 ESC. Alle Rechte vorbehalten.</p>
+            <p>&copy; <span id="currentYear"></span> ESC. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 
     <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
         function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }

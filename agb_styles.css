@@ -112,7 +112,7 @@ a:hover {
 .footer-section {
     background-color: #777777;
     color: #fff;
-    padding: 5px;
+    padding: 5px 5px 8px;
     text-align: center;
 }
 
@@ -121,20 +121,27 @@ a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0;
 }
 
 .footer-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .footer-info p {
-    margin: 5px 0;
+    margin: 2px 0;
     display: flex;
     align-items: center;
     font-size: 14px;
+    color: #fff;
+}
+
+.footer-section p {
+    margin: 2px 0;
+    color: #fff;
 }
 
 .footer-info a {
@@ -147,9 +154,8 @@ a:hover {
     text-decoration: underline;
 }
 
-
 .footer-links {
-    margin-bottom: 5px;
+    margin: 0 0 6px;
 }
 
 .footer-links a {
