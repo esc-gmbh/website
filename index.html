@@ -3,265 +3,469 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESC</title>
-    <link rel="stylesheet" href="index_styles.css">
-    <link rel="icon" href="/favicon.ico">
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" sizes="48x48"  href="/favicon-48.png?v=1">
-    <link rel="icon" type="image/png" sizes="96x96"  href="/favicon-96.png?v=1">
-    <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144.png?v=1">
-
-    <style>
-        @media screen and (max-width: 768px) {
-            .circle-section {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 50px;
-                padding: 20px;
-                height: 2000px;
-            }
-
-            .circle-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 40px;
-                width: 100%;
-            }
-
-            .circle {
-                width: 300px;
-                height: 300px;
-            }
-
-            .circle-inner {
-                width: 100%;
-                height: 100%;
-            }
-
-            .circle-front img {
-                width: 70%;
-                height: 70%;
-            }
-        }
-        @media screen and  (min-width: 769px) and (max-width: 1200px) {
-            .circle-section {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 50px;
-                padding: 20px;
-                height: auto;
-            }
-
-            .circle-container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 40px;
-                width: 100%;
-            }
-
-            .circle {
-                width: 400px;
-                height: 400px;
-            }
-
-            .circle-inner {
-                width: 100%;
-                height: 100%;
-            }
-
-            .circle-front img {
-                width: 70%;
-                height: 70%;
-            }
-        }
-        
-    </style>
+    <title>ESC GmbH – Elektrotechnik, Photovoltaik &amp; Smart Home</title>
+    <meta name="description" content="ESC GmbH aus Bärnbach: moderne Elektrotechnik, Photovoltaik, Smart Home, Installation, Wartung und elektrische Prüfungen – alles aus einer Hand.">
+    <meta name="theme-color" content="#0a0b0d">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=2">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=2">
+    <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144.png?v=2">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo" onclick="location.href='index.html#home'">
-            <img src="img/logo.jpg" alt="Firmenlogo">
-        </div>
-        <nav>
-            <button onclick="location.href='team.html'">Team</button>
-            <button onclick="location.href='contact.html'">Kontakt</button>
-            <a href="https://www.instagram.com/esc_gmbh/?igsh=YzdrMGdjZ2JnbTN5" target="_blank" class="instagram">
-                <img src="img/instagram-96.png" alt="Instagram">
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand" aria-label="ESC GmbH – Startseite">
+                <span class="brand-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+                <span>ESC<small>GMBH</small></span>
             </a>
-        </nav>
+            <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html#home">Start</a>
+                <a href="index.html#leistungen">Leistungen</a>
+                <a href="index.html#about-us">Über uns</a>
+                <a href="team.html">Team</a>
+                <a href="https://www.instagram.com/esc_gmbh/" target="_blank" rel="noopener noreferrer" class="nav-instagram" aria-label="ESC GmbH auf Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                </a>
+                <a href="contact.html" class="btn">Kontakt</a>
+            </nav>
+        </div>
     </header>
 
-<section id="home" class="title-section">
-    <img src="img/ESC_logo_transparent.png" alt="ESC Logo" class="animated-image">
-    <div class="welcome-text">Innovative solutions for a sustainable future!</div>
-</section>
+    <main>
+        <!-- Hero -->
+        <section id="home" class="hero">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <canvas class="hero-canvas" aria-hidden="true"></canvas>
 
-<section class="circle-section">
-    <div class="circle-container">
-        <div class="circle">
-            <div class="circle-inner">
-                <div class="circle-front">
-                    <img src="img/pv.png" alt="Ladestation">
+            <div class="container hero-inner">
+                <div>
+                    <span class="eyebrow reveal">Innovative solutions for a sustainable future</span>
+                    <h1 class="hero-title">
+                        <span class="split-words">Energie neu gedacht.</span><br>
+                        <span class="rotator" aria-live="off">
+                            <span class="active">Photovoltaik</span>
+                            <span>Smart&nbsp;Home</span>
+                            <span>Installation</span>
+                            <span>Prüfung</span>
+                        </span>
+                    </h1>
+                    <p class="hero-text reveal" style="--delay: .3s">Ihr Partner für moderne Elektrotechnik und innovative Lösungen – für private, gewerbliche und industrielle Anwendungen. Von der Planung bis zur Installation, alles aus einer Hand.</p>
+                    <div class="hero-actions reveal" style="--delay: .45s">
+                        <a href="contact.html" class="btn">
+                            Projekt anfragen
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                        <a href="#leistungen" class="btn btn-ghost">Leistungen entdecken</a>
+                    </div>
                 </div>
-                <div class="circle-back">
-                    <h3>Nachhaltige Lösungen für Ihre Zukunft</h3>
-                    <p class="additional-text">Von der Planung bis zur Installation – alles aus einer Hand.</p>
-                </div>
-            </div>
-        </div>
-        <div class="circle">
-            <div class="circle-inner">
-                <div class="circle-front">
-                    <img src="img/socket.png" alt="socket">
-                </div>
-                <div class="circle-back">
-                    <h3>Installation und Wartung</h3>
-                    <p class="additional-text">Sicherheit und Zuverlässigkeit stehen bei uns an erster Stelle.</p>
-                </div>
-            </div>
-        </div>
-        <div class="circle">
-            <div class="circle-inner">
-                <div class="circle-front">
-                    <img src="img/collector.png" alt="PV">
-                </div>
-                <div class="circle-back">
-                    <h3>Effiziente PV-Systeme</h3>
-                    <p class="additional-text">Maximale Energieeffizienz für ein nachhaltiges Zuhause.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="circle-container">
-        <div class="circle">
-            <div class="circle-inner">
-                <div class="circle-front">
-                    <img src="img/smarthome.png" alt="SmartHome">
-                </div>
-                <div class="circle-back">
-                    <h3>Smart Home für Komfort</h3>
-                    <p class="additional-text">Intelligente Technologien für mehr Lebensqualität.</p>
-                </div>
-            </div>
-        </div>
-        <div class="circle">
-            <div class="circle-inner">
-                <div class="circle-front">
-                    <img src="img/check.png" alt="Beratung">
-                </div>
-                <div class="circle-back">
-                    <h3>Sichere elektrische Prüfungen</h3>
-                    <p class="additional-text">Geprüft, geschützt und garantiert sicher.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
- <section id="about-us" class="content-section">
-    <div class="text">
-        <h1>Willkommen auf unserer Website!</h1>
-        <h3>Ihrem Partner für moderne Elektrotechnik und innovative Lösungen. </h3>
-        <p style="margin-bottom: 100px;">
-            Ob für private, gewerbliche oder industrielle Anwendungen – wir setzen auf nachhaltige Technologien, die den Weg in eine vernetzte, energieeffiziente Zukunft ebnen
-        </p>
-        <div class="address">
-            <h5>Adresse</h5>
-            <p>Stadionstraße 1c</p>
-            <p style="margin-bottom: 20px;">8572 Bärnbach</p>
-            <h5>Öffnungszeiten</h5>
-            <p>8:00-16:00</p>
-            <p style="margin-bottom: 20px;">________________</p>
-            <h5>Kontakt</h5>
-            <p><a href="https://wa.me/4367761471585" target="_blank" rel="noopener noreferrer">+43 677 / 614 71585</a></p>
-            <p style="margin-bottom: 20px;"><a href="mailto:office@esc-gmbh.at">office@esc-gmbh.at</a></p>
-        </div>
-    </div>
-    <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4528.968712455194!2d15.127593777594756!3d47.07198567114594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476fd35292636abb%3A0x5a64690cba72c6ca!2sStadionstra%C3%9Fe%201C%2C%208572%20B%C3%A4rnbach!5e1!3m2!1sde!2sat!4v1734215214491!5m2!1sde!2sat" width="1000" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div> 
-</section> 
+                <div class="hero-visual reveal zoom" style="--delay: .2s" data-solar>
+                    <div class="stage">
+                        <svg class="iso" viewBox="-250 -255 520 610" role="img" aria-label="3D-Animation: Tagsüber versorgt das PV-Dach Haushalt, Warmwasser und E-Auto und lädt den Hausspeicher; nachts übernimmt der Speicher, gesteuert per Smart Home">
+                        <defs>
+                        <radialGradient id="sun-glow"><stop offset="0" stop-color="#ffffff"/><stop offset=".22" stop-color="#fffbe2"/><stop offset=".45" stop-color="#fff2a6" stop-opacity=".85"/><stop offset=".75" stop-color="#f3ea5a" stop-opacity=".25"/><stop offset="1" stop-color="#e9f01d" stop-opacity="0"/></radialGradient>
+                        <radialGradient id="sun-bloom"><stop offset="0" stop-color="#fff6c4" stop-opacity=".32"/><stop offset=".4" stop-color="#e9f01d" stop-opacity=".1"/><stop offset="1" stop-color="#e9f01d" stop-opacity="0"/></radialGradient>
+                        <linearGradient id="sun-beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6c4" stop-opacity=".2"/><stop offset=".6" stop-color="#f3ea5a" stop-opacity=".07"/><stop offset="1" stop-color="#e9f01d" stop-opacity="0"/></linearGradient>
+                        <filter id="beam-blur" x="-100%" y="-30%" width="300%" height="160%"><feGaussianBlur stdDeviation="10"/></filter>
+                        <radialGradient id="moon-lit" cx=".35" cy=".4"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#cfd8ee"/></radialGradient>
+                        <radialGradient id="moon-bloom"><stop offset="0" stop-color="#b8c8ff" stop-opacity=".22"/><stop offset="1" stop-color="#b8c8ff" stop-opacity="0"/></radialGradient>
+                        <mask id="moon-mask"><circle cx="-15.6" cy="-200" r="15" fill="#fff"/><circle cx="-8.6" cy="-204" r="14" fill="#000"/></mask>
+                        <radialGradient id="sky-day"><stop offset="0" stop-color="#e9f01d" stop-opacity=".16"/><stop offset="1" stop-color="#e9f01d" stop-opacity="0"/></radialGradient>
+                        <radialGradient id="sky-night"><stop offset="0" stop-color="#3a5bd9" stop-opacity=".3"/><stop offset="1" stop-color="#3a5bd9" stop-opacity="0"/></radialGradient>
+                        <linearGradient id="pv-shine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".45"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+                        <clipPath id="roof-clip"><polygon points="-101.3,9 13,75 63.7,-0.7 -50.7,-66.7"/></clipPath>
+                        </defs>
+                        <circle class="sky sky-day" cx="13" cy="82.5" r="340"/>
+                        <circle class="sky sky-night" cx="13" cy="82.5" r="340"/>
+                        <g class="stars">
+                        <circle class="star" cx="-210" cy="-230" r="2" style="animation-delay:-0.00s"/>
+                        <circle class="star" cx="-150" cy="-170" r="1.3" style="animation-delay:-0.37s"/>
+                        <circle class="star" cx="-60" cy="-255" r="1.3" style="animation-delay:-0.74s"/>
+                        <circle class="star" cx="20" cy="-205" r="2" style="animation-delay:-1.11s"/>
+                        <circle class="star" cx="95" cy="-250" r="1.3" style="animation-delay:-1.48s"/>
+                        <circle class="star" cx="160" cy="-190" r="1.3" style="animation-delay:-1.85s"/>
+                        <circle class="star" cx="230" cy="-235" r="2" style="animation-delay:-2.22s"/>
+                        <circle class="star" cx="205" cy="-120" r="1.3" style="animation-delay:-2.59s"/>
+                        <circle class="star" cx="-235" cy="-110" r="1.3" style="animation-delay:-2.96s"/>
+                        <circle class="star" cx="-120" cy="-235" r="2" style="animation-delay:-3.33s"/>
+                        <circle class="star" cx="60" cy="-140" r="1.3" style="animation-delay:-3.70s"/>
+                        <circle class="star" cx="250" cy="-60" r="1.3" style="animation-delay:-4.07s"/>
+                        <circle class="star" cx="-245" cy="-20" r="2" style="animation-delay:-4.44s"/>
+                        <circle class="star" cx="130" cy="-110" r="1.3" style="animation-delay:-4.81s"/>
+                        <circle class="star" cx="-30" cy="-175" r="1.3" style="animation-delay:-5.18s"/>
+                        </g>
+                        <g class="platform">
+                        <polygon class="plat f-left" points="-233.8,153 26,303 26,285 -233.8,135"/>
+                        <polygon class="plat f-right" points="259.8,168 26,303 26,285 259.8,150"/>
+                        <polygon class="plat f-top" points="0,0 259.8,150 26,285 -233.8,135"/>
+                        <line class="grid" x1="26" y1="15" x2="-207.8" y2="150"/>
+                        <line class="grid" x1="52" y1="30" x2="-181.9" y2="165"/>
+                        <line class="grid" x1="77.9" y1="45" x2="-155.9" y2="180"/>
+                        <line class="grid" x1="103.9" y1="60" x2="-129.9" y2="195"/>
+                        <line class="grid" x1="129.9" y1="75" x2="-103.9" y2="210"/>
+                        <line class="grid" x1="155.9" y1="90" x2="-77.9" y2="225"/>
+                        <line class="grid" x1="181.9" y1="105" x2="-52" y2="240"/>
+                        <line class="grid" x1="207.8" y1="120" x2="-26" y2="255"/>
+                        <line class="grid" x1="233.8" y1="135" x2="0" y2="270"/>
+                        <line class="grid" x1="-26" y1="15" x2="233.8" y2="165"/>
+                        <line class="grid" x1="-52" y1="30" x2="207.8" y2="180"/>
+                        <line class="grid" x1="-77.9" y1="45" x2="181.9" y2="195"/>
+                        <line class="grid" x1="-103.9" y1="60" x2="155.9" y2="210"/>
+                        <line class="grid" x1="-129.9" y1="75" x2="129.9" y2="225"/>
+                        <line class="grid" x1="-155.9" y1="90" x2="103.9" y2="240"/>
+                        <line class="grid" x1="-181.9" y1="105" x2="77.9" y2="255"/>
+                        <line class="grid" x1="-207.8" y1="120" x2="52" y2="270"/>
+                        <path class="plat-edge" d="M-233.8,135 L26,285 L259.8,150"/>
+                        </g>
+                        <path class="cable" d="M2.6,165.9 L-59.8,129.9 L-33.8,114.9"/>
+                        <path class="flow" d="M2.6,165.9 L-59.8,129.9 L-33.8,114.9" data-line="house"/>
+                        <path class="cable" d="M2.6,165.9 L-33.8,186.9 L-97.4,150.2"/>
+                        <path class="flow" d="M2.6,165.9 L-33.8,186.9 L-97.4,150.2" data-line="water"/>
+                        <path class="cable" d="M2.6,165.9 L31.2,182.4 L44.2,174.9"/>
+                        <path class="flow" d="M2.6,165.9 L31.2,182.4 L44.2,174.9" data-line="battery"/>
+                        <g class="house">
+                        <polygon class="roof-back" points="0,-49.5 114.3,16.5 63.7,-0.7 -50.7,-66.7"/>
+                        <polygon class="wall f-right" points="103.9,90 13,142.5 13,64.5 58.5,-3.7 103.9,12"/>
+                        <polygon class="smart-hub" points="90.9,40.5 77.9,48 77.9,36 90.9,28.5"/>
+                        <polygon class="window" points="62.4,81 36.4,96 36.4,72 62.4,57" data-room="kueche"/>
+                        <polygon class="wallbox f-left" points="20.8,117 26.5,120.3 26.5,96.3 20.8,93"/>
+                        <polygon class="wallbox f-right" points="38.2,113.5 26.5,120.3 26.5,96.3 38.2,89.5"/>
+                        <polygon class="wallbox f-top" points="32.5,86.3 38.2,89.5 26.5,96.3 20.8,93"/>
+                        <polygon class="wallbox-led" points="35.6,101.6 29.1,105.3 29.1,99.3 35.6,95.6"/>
+                        <polygon class="wall f-left" points="-90.9,82.5 13,142.5 13,64.5 -90.9,4.5"/>
+                        <polygon class="window" points="-77.9,57 -54.6,70.5 -54.6,46.5 -77.9,33" data-room="wohnen"/>
+                        <polygon class="window" points="-46.8,75 -23.4,88.5 -23.4,64.5 -46.8,51" data-room="wohnen"/>
+                        <polygon class="door" points="-13,127.5 2.6,136.5 2.6,88.5 -13,79.5"/>
+                        <polygon class="roof-front" points="-101.3,9 13,75 63.7,-0.7 -50.7,-66.7"/>
+                        <polygon class="pv" points="-89.2,4.9 -65.8,18.4 -47,-9.9 -70.4,-23.4"/>
+                        <polygon class="pv" points="-67.8,-27.2 -44.4,-13.7 -25.5,-42.1 -48.9,-55.6"/>
+                        <polygon class="pv" points="-63.2,19.9 -39.9,33.4 -21,5.1 -44.4,-8.4"/>
+                        <polygon class="pv" points="-41.8,-12.2 -18.4,1.3 0.4,-27.1 -22.9,-40.6"/>
+                        <polygon class="pv" points="-37.3,34.9 -13.9,48.4 5,20.1 -18.4,6.6"/>
+                        <polygon class="pv" points="-15.8,2.8 7.6,16.3 26.4,-12.1 3,-25.6"/>
+                        <polygon class="pv" points="-11.3,49.9 12.1,63.4 31,35.1 7.6,21.6"/>
+                        <polygon class="pv" points="10.2,17.8 33.5,31.3 52.4,2.9 29,-10.6"/>
+                        <g clip-path="url(#roof-clip)"><rect class="pv-shine" x="-100" y="-80" width="60" height="160"/></g>
+                        </g>
+                        <path class="cable" d="M13,70.5 L13,144.9 L26,152.4 L2.6,165.9"/>
+                        <path class="flow" d="M13,70.5 L13,144.9 L26,152.4 L2.6,165.9" data-line="pv"/>
+                        <polygon class="hub f-left" points="-13,166.5 2.6,175.5 2.6,160.5 -13,151.5"/>
+                        <polygon class="hub f-right" points="18.2,166.5 2.6,175.5 2.6,160.5 18.2,151.5"/>
+                        <polygon class="hub f-top" points="2.6,142.5 18.2,151.5 2.6,160.5 -13,151.5"/>
+                        <path class="hub-bolt" transform="translate(-4.4 142.5) scale(0.62)" d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>
+                        <g class="battery-unit">
+                        <polygon class="storage f-left" points="36.4,171 52,180 52,141 36.4,132"/>
+                        <polygon class="storage f-right" points="65,172.5 52,180 52,141 65,133.5"/>
+                        <polygon class="storage f-top" points="49.4,124.5 65,133.5 52,141 36.4,132"/>
+                        <polygon class="cell" points="39,166.5 49.4,172.5 49.4,167.4 39,161.4" data-cell="0"/>
+                        <polygon class="cell" points="39,159 49.4,165 49.4,159.9 39,153.9" data-cell="1"/>
+                        <polygon class="cell" points="39,151.5 49.4,157.5 49.4,152.4 39,146.4" data-cell="2"/>
+                        <polygon class="cell" points="39,144 49.4,150 49.4,144.9 39,138.9" data-cell="3"/>
+                        </g>
+                        <g class="car">
+                        <line class="spoiler-post" x1="95.3" y1="108.2" x2="95.3" y2="101"/>
+                        <line class="spoiler-post" x1="72" y1="121.7" x2="72" y2="114.5"/>
+                        <polygon class="car-body f-right" points="189.7,170.1 189.7,162.9 153.3,183.9 153.3,191.1"/>
+                        <polygon class="car-body f-top" points="189.7,162.9 165,141.5 128.6,162.5 153.3,183.9"/>
+                        <polygon class="car-body f-top" points="165,141.5 101.3,102.9 65,123.9 128.6,162.5"/>
+                        <polygon class="car-body f-left" points="62.4,138.6 153.3,191.1 153.3,183.9 128.6,162.5 65,123.9 62.4,126"/>
+                        <polygon class="car-glass f-top" points="161.1,143.7 142.9,120 114.3,136.5 132.5,160.2"/>
+                        <polygon class="car-glass f-top" points="142.9,120 120.8,106.7 92.2,123.2 114.3,136.5"/>
+                        <polygon class="car-glass f-top" points="120.8,106.7 100,106.7 71.4,123.2 92.2,123.2"/>
+                        <polygon class="car-glass f-left" points="132.5,160.2 114.3,136.5 92.2,123.2 71.4,123.2"/>
+                        <polygon class="car-roof" points="142.9,120 120.8,106.7 92.2,123.2 114.3,136.5"/>
+                        <path class="car-stripe" d="M63.7,130.7 L152,183.7"/>
+                        <path class="car-led" d="M187.1,166.5 L155.9,184.5"/>
+                        <polygon class="spoiler" points="95.6,96.6 104.4,101.1 73.3,119.1 64.4,114.6"/>
+                        <polygon class="wheel" points="89.6,150.8 89.4,148.3 88.6,145.6 87.4,143.1 85.7,140.7 83.9,138.7 81.8,137.3 79.8,136.4 77.9,136.2 76.3,136.7 75.1,137.9 74.3,139.6 74,141.8 74.3,144.2 75.1,146.9 76.3,149.4 77.9,151.8 79.8,153.8 81.8,155.3 83.9,156.1 85.7,156.3 87.4,155.8 88.6,154.6 89.4,152.9"/>
+                        <polygon class="rim" points="86.3,149.1 86,147.1 85.2,145 83.9,143.1 82.4,141.6 80.8,140.6 79.2,140.4 78,140.9 77.2,142 76.9,143.7 77.2,145.7 78,147.8 79.2,149.7 80.8,151.2 82.4,152.2 83.9,152.4 85.2,151.9 86,150.8"/>
+                        <polygon class="rim-hub" points="82.6,147.3 82.4,146.3 81.7,145.4 80.9,144.9 80.3,145.1 80,145.8 80.3,146.8 80.9,147.7 81.7,148.2 82.4,148"/>
+                        <polygon class="wheel" points="141.6,180.8 141.3,178.3 140.6,175.6 139.3,173.1 137.7,170.7 135.8,168.7 133.8,167.3 131.8,166.4 129.9,166.2 128.3,166.7 127.1,167.9 126.3,169.6 126,171.8 126.3,174.2 127.1,176.9 128.3,179.4 129.9,181.8 131.8,183.8 133.8,185.3 135.8,186.1 137.7,186.3 139.3,185.8 140.6,184.6 141.3,182.9"/>
+                        <polygon class="rim" points="138.2,179.1 137.9,177.1 137.1,175 135.9,173.1 134.4,171.6 132.7,170.6 131.2,170.4 130,170.9 129.1,172 128.9,173.7 129.1,175.7 130,177.8 131.2,179.7 132.7,181.2 134.4,182.2 135.9,182.4 137.1,181.9 137.9,180.8"/>
+                        <polygon class="rim-hub" points="134.6,177.3 134.3,176.3 133.7,175.4 132.9,174.9 132.2,175.1 132,175.8 132.2,176.8 132.9,177.7 133.7,178.2 134.3,178"/>
+                        </g>
+                        <path class="cable" d="M32.2,111 Q36.4,148.5 74,135.8"/><path class="flow" data-line="car" d="M32.2,111 Q36.4,148.5 74,135.8"/>
+                        <g class="tank">
+                        <polygon class="tank-shadow" points="-96.6,151.2 -101.7,153.5 -107.4,155.1 -113.7,155.9 -120.1,155.9 -126.4,155.1 -132.2,153.5 -137.2,151.2 -141.2,148.3 -144,145 -145.4,141.4 -145.4,137.6 -144,134 -141.2,130.7 -137.2,127.8 -132.2,125.5 -126.4,123.9 -120.1,123.1 -113.7,123.1 -107.4,123.9 -101.7,125.5 -96.6,127.8 -92.6,130.7 -89.9,134 -88.4,137.6 -88.4,141.4 -89.9,145 -92.6,148.3"/>
+                        <polygon class="water" points="-89.4,138 -89.9,141.1 -91.5,144.1 -94,146.8 -97.4,149.3 -101.6,151.2 -106.4,152.7 -111.5,153.6 -116.9,153.9 -122.3,153.6 -127.5,152.7 -132.2,151.2 -136.4,149.3 -139.8,146.8 -142.4,144.1 -143.9,141.1 -144.5,138 -144.5,88.5 -143.9,91.6 -142.4,94.6 -139.8,97.3 -136.4,99.8 -132.2,101.7 -127.5,103.2 -122.3,104.1 -116.9,104.4 -111.5,104.1 -106.4,103.2 -101.6,101.7 -97.4,99.8 -94,97.3 -91.5,94.6 -89.9,91.6 -89.4,88.5"/>
+                        <polygon class="water-top" points="-97.4,99.8 -102.3,102 -107.8,103.5 -113.8,104.3 -120,104.3 -126,103.5 -131.6,102 -136.4,99.8 -140.2,97 -142.9,93.8 -144.3,90.3 -144.3,86.7 -142.9,83.2 -140.2,80 -136.4,77.3 -131.6,75 -126,73.5 -120,72.7 -113.8,72.7 -107.8,73.5 -102.3,75 -97.4,77.3 -93.6,80 -90.9,83.2 -89.5,86.7 -89.5,90.3 -90.9,93.8 -93.6,97"/>
+                        <circle class="bubble" cx="-124.9" cy="133.5" r="2.5"/>
+                        <circle class="bubble" cx="-114.9" cy="137.5" r="2" style="animation-delay:-.9s"/>
+                        <circle class="bubble" cx="-106.9" cy="131.5" r="2.5" style="animation-delay:-1.7s"/>
+                        <polygon class="tank-glass" points="-87.5,139.5 -88.1,142.8 -89.8,146 -92.5,148.9 -96.1,151.5 -100.6,153.6 -105.7,155.2 -111.2,156.1 -116.9,156.5 -122.6,156.1 -128.2,155.2 -133.2,153.6 -137.7,151.5 -141.4,148.9 -144.1,146 -145.7,142.8 -146.3,139.5 -146.3,67.5 -145.7,70.8 -144.1,74 -141.4,76.9 -137.7,79.5 -133.2,81.6 -128.2,83.2 -122.6,84.1 -116.9,84.5 -111.2,84.1 -105.7,83.2 -100.6,81.6 -96.1,79.5 -92.5,76.9 -89.8,74 -88.1,70.8 -87.5,67.5"/>
+                        <polygon class="tank-cap" points="-96.1,79.5 -101.3,81.9 -107.2,83.5 -113.6,84.4 -120.2,84.4 -126.6,83.5 -132.6,81.9 -137.7,79.5 -141.8,76.5 -144.7,73.1 -146.1,69.4 -146.1,65.6 -144.7,61.9 -141.8,58.5 -137.7,55.5 -132.6,53.1 -126.6,51.5 -120.2,50.6 -113.6,50.6 -107.2,51.5 -101.3,53.1 -96.1,55.5 -92,58.5 -89.2,61.9 -87.7,65.6 -87.7,69.4 -89.2,73.1 -92,76.5"/>
+                        </g>
+                        <line class="trunk" x1="28.6" y1="259.5" x2="28.6" y2="232.5"/>
+                        <circle class="tree" cx="28.6" cy="222.5" r="17"/>
+                        <line class="trunk" x1="-197.5" y1="135" x2="-197.5" y2="113.4"/>
+                        <circle class="tree" cx="-197.5" cy="105.4" r="13.6"/>
+                        <line class="trunk" x1="218.2" y1="153" x2="218.2" y2="128.7"/>
+                        <circle class="tree" cx="218.2" cy="119.7" r="15.3"/>
+                        <g class="wifi" transform="translate(84.4 38.3)"><circle r="10"/><circle r="10" style="animation-delay:-1s"/><circle r="10" style="animation-delay:-2s"/></g>
+                        <g class="orbit sun-orbit" style="transform-origin:-15.6px 0px">
+                        <polygon class="sun-beam" filter="url(#beam-blur)" points="-35.6,-170 4.4,-170 64.4,-30 -95.6,-30"/>
+                        <circle class="sun-bloom" cx="-15.6" cy="-200" r="120"/>
+                        <circle class="sun-glow" cx="-15.6" cy="-200" r="42"/>
+                        </g>
+                        <g class="orbit moon-orbit" style="transform-origin:-15.6px 0px">
+                        <circle class="moon-bloom" cx="-15.6" cy="-200" r="70"/>
+                        <circle class="moon-shadow" cx="-15.6" cy="-200" r="15"/>
+                        <circle class="moon-lit" cx="-15.6" cy="-200" r="15" mask="url(#moon-mask)"/>
+                        </g>
+                        </svg>
+                        <div class="chip" style="left: 40.6%; top: 28.8%">
+                            <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span>
+                            <span><small>PV-Anlage</small><b data-val="pv">–</b></span>
+                        </div>
+                        <div class="chip" style="left: 50.1%; top: 60.5%">
+                            <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="18" rx="2"/><path d="M10 2h4M10 13h4M10 17h4"/></svg></span>
+                            <span><small>Speicher</small><b data-val="battery">–</b><span class="bar"><i data-val="battery-bar"></i></span></span>
+                        </div>
+                        <div class="chip" style="left: 79.1%; top: 58.5%">
+                            <span class="chip-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+                            <span><small>E-Auto</small><b data-val="car">–</b><span class="bar"><i data-val="car-bar"></i></span></span>
+                        </div>
+                        <div class="chip" style="left: 25.6%; top: 48.4%">
+                            <span class="chip-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.8V4a2 2 0 1 0-4 0v10.8a4 4 0 1 0 4 0z"/></svg></span>
+                            <span><small>Warmwasser</small><b data-val="water">–</b></span>
+                        </div>
+                        <div class="app-card">
+                            <div class="app-head">
+                                <span>Smart Home<small data-val="source">Sonnenstrom</small></span>
+                                <span class="app-time"><svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg><b data-val="time">09:00</b></span>
+                            </div>
+                            <div class="app-graph">
+                                <div class="graph-head"><span>Speicher · 24 h</span><b data-val="battery-graph">–</b></div>
+                                <svg class="graph" viewBox="0 0 200 50" aria-hidden="true">
+                                    <defs><linearGradient id="g-area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9f01d" stop-opacity=".35"/><stop offset="1" stop-color="#e9f01d" stop-opacity="0"/></linearGradient></defs>
+                                    <rect class="g-night" x="0" y="0" width="50" height="50"/>
+                                    <rect class="g-night" x="166.7" y="0" width="33.3" height="50"/>
+                                    <line class="g-grid" x1="0" y1="25" x2="200" y2="25"/>
+                                    <path class="g-area" d=""/>
+                                    <path class="g-line" d=""/>
+                                    <line class="g-now" x1="0" y1="0" x2="0" y2="50"/>
+                                    <circle class="g-dot" r="3"/>
+                                </svg>
+                                <div class="graph-axis"><span>0</span><span>6</span><span>12</span><span>18</span><span>24 Uhr</span></div>
+                            </div>
+                            <div class="app-tiles">
+                                <button type="button" class="app-tile" data-toggle="wohnen" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z"/></svg><span>Wohnen</span><em>Aus</em></button>
+                                <button type="button" class="app-tile" data-toggle="kueche" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z"/></svg><span>Küche</span><em>Aus</em></button>
+                                <button type="button" class="app-tile" data-toggle="water" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7s6 6.3 6 11.3a6 6 0 0 1-12 0c0-5 6-11.3 6-11.3z"/></svg><span>Boiler</span><em>An</em></button>
+                                <button type="button" class="app-tile" data-toggle="car" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6M15 2v6M6 8h12v4a6 6 0 0 1-12 0V8zM12 18v4"/></svg><span>Wallbox</span><em>An</em></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-<div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie-Hinweis">
-    <div class="cookie-content">
-        <p>Wir verwenden Cookies, um die Website zu verbessern und die Nutzung zu analysieren. Ihre Auswahl wird lokal gespeichert.</p>
+            <a href="#leistungen" class="scroll-hint" aria-label="Weiter scrollen">
+                <span class="mouse"></span>
+                Scroll
+            </a>
+        </section>
+
+        <!-- Laufband -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track">
+                <span>Photovoltaik</span><span>Smart Home</span><span>Elektroinstallation</span><span>Wartung</span><span>Elektrische Prüfungen</span><span>Energieeffizienz</span>
+                <span>Photovoltaik</span><span>Smart Home</span><span>Elektroinstallation</span><span>Wartung</span><span>Elektrische Prüfungen</span><span>Energieeffizienz</span>
+            </div>
+        </div>
+
+        <!-- Leistungen -->
+        <section id="leistungen" class="section">
+            <div class="container">
+                <div class="section-head">
+                    <span class="eyebrow reveal">Leistungen</span>
+                    <h2 class="section-title split-words">Was wir für Sie <span class="accent">bewegen</span></h2>
+                    <p class="section-lead reveal">Nachhaltige Technologien, die den Weg in eine vernetzte, energieeffiziente Zukunft ebnen.</p>
+                </div>
+
+                <div class="services-grid">
+                    <article class="service-card wide reveal" data-tilt>
+                        <span class="num">01</span>
+                        <div class="service-icon"><img src="img/pv.png" alt="" loading="lazy"></div>
+                        <h3>Nachhaltige Lösungen für Ihre Zukunft</h3>
+                        <p>Von der Planung bis zur Installation – alles aus einer Hand.</p>
+                    </article>
+                    <article class="service-card reveal" style="--delay: .1s" data-tilt>
+                        <span class="num">02</span>
+                        <div class="service-icon"><img src="img/socket.png" alt="" loading="lazy"></div>
+                        <h3>Installation und Wartung</h3>
+                        <p>Sicherheit und Zuverlässigkeit stehen bei uns an erster Stelle.</p>
+                    </article>
+                    <article class="service-card reveal" data-tilt>
+                        <span class="num">03</span>
+                        <div class="service-icon"><img src="img/collector.png" alt="" loading="lazy"></div>
+                        <h3>Effiziente PV-Systeme</h3>
+                        <p>Maximale Energieeffizienz für ein nachhaltiges Zuhause.</p>
+                    </article>
+                    <article class="service-card reveal" style="--delay: .1s" data-tilt>
+                        <span class="num">04</span>
+                        <div class="service-icon"><img src="img/smarthome.png" alt="" loading="lazy"></div>
+                        <h3>Smart Home für Komfort</h3>
+                        <p>Intelligente Technologien für mehr Lebensqualität.</p>
+                    </article>
+                    <article class="service-card reveal" style="--delay: .2s" data-tilt>
+                        <span class="num">05</span>
+                        <div class="service-icon"><img src="img/check.png" alt="" loading="lazy"></div>
+                        <h3>Sichere elektrische Prüfungen</h3>
+                        <p>Geprüft, geschützt und garantiert sicher.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ablauf -->
+        <section class="section process">
+            <div class="container">
+                <div class="section-head center">
+                    <span class="eyebrow reveal">So arbeiten wir</span>
+                    <h2 class="section-title split-words">Alles aus <span class="accent">einer Hand</span></h2>
+                </div>
+
+                <ol class="process-steps">
+                    <li class="process-step reveal">
+                        <div class="step-dot">1</div>
+                        <h3>Beratung</h3>
+                        <p>Wir hören zu und finden gemeinsam die passende Lösung für Ihr Vorhaben.</p>
+                    </li>
+                    <li class="process-step reveal" style="--delay: .1s">
+                        <div class="step-dot">2</div>
+                        <h3>Planung</h3>
+                        <p>Maßgeschneidert, effizient und nach den höchsten Standards.</p>
+                    </li>
+                    <li class="process-step reveal" style="--delay: .2s">
+                        <div class="step-dot">3</div>
+                        <h3>Installation</h3>
+                        <p>Fachgerechte Umsetzung durch unser erfahrenes Team.</p>
+                    </li>
+                    <li class="process-step reveal" style="--delay: .3s">
+                        <div class="step-dot">4</div>
+                        <h3>Wartung &amp; Prüfung</h3>
+                        <p>Damit Ihre Anlage auch langfristig sicher und zuverlässig läuft.</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Über uns -->
+        <section id="about-us" class="section">
+            <div class="container about-grid">
+                <div class="about-text">
+                    <span class="eyebrow reveal">Über uns</span>
+                    <h2 class="section-title split-words">Willkommen bei <span class="accent">ESC</span></h2>
+                    <p class="lead reveal">Ihrem Partner für moderne Elektrotechnik und innovative Lösungen.</p>
+                    <p class="reveal">Ob für private, gewerbliche oder industrielle Anwendungen – wir setzen auf nachhaltige Technologien, die den Weg in eine vernetzte, energieeffiziente Zukunft ebnen.</p>
+
+                    <div class="info-cards">
+                        <div class="info-card reveal">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+                            <h4>Adresse</h4>
+                            <p>Stadionstraße 1c<br>8572 Bärnbach</p>
+                        </div>
+                        <div class="info-card reveal" style="--delay: .1s">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                            <h4>Öffnungszeiten</h4>
+                            <p>8:00 – 16:00</p>
+                        </div>
+                        <div class="info-card reveal" style="--delay: .2s">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+                            <h4>Kontakt</h4>
+                            <p><a href="https://wa.me/4367761471585" target="_blank" rel="noopener noreferrer">+43 677 / 614 71585</a></p>
+                            <p><a href="mailto:office@esc-gmbh.at">office@esc-gmbh.at</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-wrap reveal from-right">
+                    <iframe title="Standort ESC GmbH auf Google Maps" data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4528.968712455194!2d15.127593777594756!3d47.07198567114594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476fd35292636abb%3A0x5a64690cba72c6ca!2sStadionstra%C3%9Fe%201C%2C%208572%20B%C3%A4rnbach!5e1!3m2!1sde!2sat!4v1734215214491!5m2!1sde!2sat" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="map-placeholder">
+                        <div class="map-pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.3 7-12a7 7 0 1 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+                        <p><strong>Stadionstraße 1c, 8572 Bärnbach</strong>Beim Laden der Karte werden Daten an Google übertragen. Mehr dazu in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+                        <button type="button" class="btn btn-ghost" data-load-map>Karte anzeigen</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="cta">
+            <div class="container">
+                <div class="cta-box reveal zoom">
+                    <div>
+                        <h2>Bereit für Ihr Projekt?</h2>
+                        <p>Erzählen Sie uns von Ihrem Vorhaben – wir melden uns schnell und unverbindlich bei Ihnen.</p>
+                    </div>
+                    <a href="contact.html" class="btn">
+                        Jetzt Kontakt aufnehmen
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="brand" aria-label="ESC GmbH – Startseite">
+                        <span class="brand-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+                        <span>ESC<small>GMBH</small></span>
+                    </a>
+                    <p class="footer-claim">Electric Solution Components – innovative Lösungen für eine nachhaltige Zukunft.</p>
+                </div>
+                <div>
+                    <h4>Kontakt</h4>
+                    <ul>
+                        <li><a href="mailto:office@esc-gmbh.at">office@esc-gmbh.at</a></li>
+                        <li><a href="https://wa.me/4367761471585" target="_blank" rel="noopener noreferrer">+43 677 / 614 71585</a></li>
+                        <li>Stadionstraße 1c, 8572 Bärnbach</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html#leistungen">Leistungen</a></li>
+                        <li><a href="team.html">Team &amp; Karriere</a></li>
+                        <li><a href="contact.html">Kontakt</a></li>
+                        <li><a href="https://www.instagram.com/esc_gmbh/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-big" aria-hidden="true">ESC GMBH</div>
+            <div class="footer-bottom">
+                <span>&copy; <span data-year></span> ESC GmbH. Alle Rechte vorbehalten.</span>
+                <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <button class="to-top" type="button" aria-label="Nach oben">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+    </button>
+
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-labelledby="cookie-title">
+        <div class="cookie-head">
+            <span class="cookie-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5z"/><path d="M8.5 8.5v.01M16 15.5v.01M12 12v.01M11 17v.01M7 14v.01"/></svg></span>
+            <span><small>Privatsphäre</small><strong id="cookie-title">Cookies &amp; externe Inhalte</strong></span>
+        </div>
+        <p>Wir verwenden Cookies, um die Website zu verbessern und die Nutzung zu analysieren. Google Maps lädt erst nach Ihrer Zustimmung. <a href="datenschutz.html">Mehr erfahren</a></p>
         <div class="cookie-actions">
-            <button id="accept-cookies" type="button">Akzeptieren</button>
-            <button id="decline-cookies" class="cookie-button-secondary" type="button">Nur notwendig</button>
+            <button id="accept-cookies" class="btn" type="button">Akzeptieren</button>
+            <button id="decline-cookies" class="btn btn-ghost" type="button">Nur notwendig</button>
         </div>
     </div>
-</div>
 
-<footer class="footer-section">
-    <div class="footer-content">
-        <div class="footer-info">
-            <p>
-                <a href="mailto:office@esc-gmbh.at">office@esc-gmbh.at</a>
-            </p>
-            <p>
-                Stadionstraße 1c, 8572 Bärnbach
-            </p>
-        </div>
-        <div class="footer-links">
-            <a onclick="location.href='impressum.html'" href="#impressum">Impressum</a>
-            <a onclick="location.href='datenschutz.html'" href="#datenschutz">Datenschutz</a>
-            <a onclick="location.href='agb.html'" href="#agb">AGB</a>
-        </div>
-        <p>&copy; <span id="currentYear"></span> ESC. Alle Rechte vorbehalten.</p>
-    </div>
-</footer>
-
-<script>
-    document.getElementById("currentYear").textContent = new Date().getFullYear();
-
-    const cookieBanner = document.getElementById('cookie-banner');
-    const cookieKey = 'esc_cookie_consent';
-
-    function hideCookieBanner() {
-        if (cookieBanner) {
-            cookieBanner.style.display = 'none';
-        }
-    }
-
-    const savedCookieChoice = localStorage.getItem(cookieKey);
-    if (savedCookieChoice) {
-        hideCookieBanner();
-    }
-
-    document.getElementById('accept-cookies')?.addEventListener('click', () => {
-        localStorage.setItem(cookieKey, 'accepted');
-        hideCookieBanner();
-    });
-
-    document.getElementById('decline-cookies')?.addEventListener('click', () => {
-        localStorage.setItem(cookieKey, 'declined');
-        hideCookieBanner();
-    });
-
-    document.addEventListener("DOMContentLoaded", () => {
-        const circles = document.querySelectorAll(".circle");
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add("animate");
-                    }, index * 200);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        circles.forEach(circle => observer.observe(circle));
-    });
-
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-</script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -3,107 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unser Team</title>
-    <link rel="stylesheet" href="team_styles.css">
+    <title>Unser Team &amp; Karriere – ESC GmbH</title>
+    <meta name="description" content="Lernen Sie das Team der ESC GmbH kennen – und werden Sie Teil davon. Wir stellen ein!">
+    <meta name="theme-color" content="#0a0b0d">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=2">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=2">
+    <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144.png?v=2">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo" onclick="location.href='index.html#home'">
-            <img src="img/logo.jpg" alt="Firmenlogo">
-        </div>
-        <nav>
-            <button onclick="location.href='team.html'">Team</button>
-            <button onclick="location.href='contact.html'">Kontakt</button>
-            <a href="https://www.instagram.com/esc_gmbh/?igshid=YzdrMGdjZ2JnbTN5" target="_blank" class="instagram">
-                <img src="img/instagram-96.png" alt="Instagram">
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand" aria-label="ESC GmbH – Startseite">
+                <span class="brand-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+                <span>ESC<small>GMBH</small></span>
             </a>
-        </nav>
+            <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+            <nav class="main-nav" id="main-nav">
+                <a href="index.html#home">Start</a>
+                <a href="index.html#leistungen">Leistungen</a>
+                <a href="index.html#about-us">Über uns</a>
+                <a href="team.html" aria-current="page">Team</a>
+                <a href="https://www.instagram.com/esc_gmbh/" target="_blank" rel="noopener noreferrer" class="nav-instagram" aria-label="ESC GmbH auf Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                </a>
+                <a href="contact.html" class="btn">Kontakt</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Team Section -->
-    <section class="team-section">
-        <div class="team-container">
-            <img src="img/team_bar.png" alt="Team" class="team-image">
-            <div class="team-text">
-                <h2>Wilkommen bei ESC!</h2>
-                <p>Mit einem klaren Fokus auf Innovation, Präzision und Nachhaltigkeit entwickeln wir maßgeschneiderte Lösungen, die den höchsten Standards gerecht werden.</p>
-                <p>Wir sind stolz darauf, ein breites Spektrum an Projekten erfolgreich umgesetzt zu haben – von privaten Wohnhäusern bis hin zu großen Industrieanlagen. Jedes Projekt ist für uns eine neue Herausforderung, die wir mit Engagement, Kreativität und technischem Know-how angehen.</p>
-                <h2>Lassen Sie uns gemeinsam die Zukunft gestalten!</h2>
-                <h3>Effizient, innovativ und nachhaltig.</h3>
-                <p>Vertrauen Sie auf unser erfahrenes Team, das stets bereit ist, die Extra-Meile für Ihre Zufriedenheit zu gehen.</p>
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <span class="eyebrow reveal">Team &amp; Karriere</span>
+                <h1 class="section-title split-words">Willkommen bei <span class="accent">ESC!</span></h1>
+                <p class="section-lead reveal" style="--delay: .3s">Mit einem klaren Fokus auf Innovation, Präzision und Nachhaltigkeit entwickeln wir maßgeschneiderte Lösungen, die den höchsten Standards gerecht werden.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Hiring Section -->
-    <section class="hiring-section">
-        <div class="hiring-container">
-            <div class="hiring-text">
-                <h2>Wir stellen ein!</h2>
-                <h4>Du möchtest Teil eines innovativen, dynamischen Teams werden, das die Zukunft aktiv mitgestaltet? Dann bist du bei uns genau richtig!</h4>
-                <p>Wir bei ESC stehen für Fortschritt, Präzision und Nachhaltigkeit. Jeden Tag arbeiten wir daran, die Welt ein Stück besser zu machen – und dafür brauchen wir kreative, engagierte Köpfe wie dich!</p>
-                <h2>Was dich bei uns erwartet:</h2>
-                <p class="indented-paragraph">- Spannende Projekte in einem wachsenden Markt.</p>
-                <p class="indented-paragraph">- Ein starkes Team, das Herausforderungen gemeinsam meistert.</p>
-                <p class="indented-paragraph">- Persönliche und berufliche Weiterentwicklung.</p>
-                <p class="indented-paragraph">- Eine innovative Arbeitsatmosphäre.</p>
-                <p class="indented-paragraph">- Wertschätzung, Fairness und Flexibilität.</p>
-                <button class="apply-button" onclick="location.href='contact.html'">Jetzt bewerben</button>
+        <!-- Team -->
+        <section class="section" style="padding-top: 0">
+            <div class="container feature-split">
+                <div class="feature-media team reveal from-left">
+                    <img src="img/team_bar.png" alt="Symbolbild: vernetztes Team">
+                </div>
+                <div class="feature-text">
+                    <h2 class="split-words">Lassen Sie uns gemeinsam die <span class="accent">Zukunft</span> gestalten!</h2>
+                    <p class="lead reveal">Wir sind stolz darauf, ein breites Spektrum an Projekten erfolgreich umgesetzt zu haben – von privaten Wohnhäusern bis hin zu großen Industrieanlagen.</p>
+                    <p class="reveal">Jedes Projekt ist für uns eine neue Herausforderung, die wir mit Engagement, Kreativität und technischem Know-how angehen.</p>
+                    <h3 class="reveal">Effizient, innovativ und nachhaltig.</h3>
+                    <p class="reveal">Vertrauen Sie auf unser erfahrenes Team, das stets bereit ist, die Extra-Meile für Ihre Zufriedenheit zu gehen.</p>
+                </div>
             </div>
-            <img src="img/hiring_bar.png" alt="Hiring" class="hiring-image">
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer-section">
-        <div class="footer-content">
-            <div class="footer-info">
-                <p>
-                    <a href="mailto:office@esc-gmbh.at">office@esc-gmbh.at</a>
-                </p>
-                <p>
-                    Stadionstraße 1c, 8572 Bärnbach
-                </p>
+        <!-- Werte -->
+        <section class="section process">
+            <div class="container">
+                <div class="section-head center">
+                    <span class="eyebrow reveal">Wofür wir stehen</span>
+                    <h2 class="section-title split-words">Unsere <span class="accent">Werte</span></h2>
+                </div>
+                <div class="values">
+                    <div class="value-card reveal">
+                        <p class="big">Innovation</p>
+                        <p>Wir setzen auf moderne Technologien, die den Weg in eine vernetzte Zukunft ebnen.</p>
+                    </div>
+                    <div class="value-card reveal" style="--delay: .1s">
+                        <p class="big">Präzision</p>
+                        <p>Sicherheit und Zuverlässigkeit stehen bei jedem Handgriff an erster Stelle.</p>
+                    </div>
+                    <div class="value-card reveal" style="--delay: .2s">
+                        <p class="big">Nachhaltigkeit</p>
+                        <p>Maximale Energieeffizienz für ein nachhaltiges Zuhause und Unternehmen.</p>
+                    </div>
+                </div>
             </div>
-            <div class="footer-links">
-                <a onclick="location.href='impressum.html'" href="#impressum">Impressum</a>
-                <a onclick="location.href='datenschutz.html'" href="#datenschutz">Datenschutz</a>
-                <a onclick="location.href='agb.html'" href="#agb">AGB</a>
+        </section>
+
+        <!-- Karriere -->
+        <section id="karriere" class="section">
+            <div class="container feature-split reverse">
+                <div class="feature-media hiring reveal from-right">
+                    <img src="img/hiring_bar.png" alt="Symbolbild: Bewerbung">
+                </div>
+                <div class="feature-text">
+                    <span class="eyebrow reveal">Karriere</span>
+                    <h2 class="split-words">Wir stellen <span class="accent">ein!</span></h2>
+                    <p class="lead reveal">Du möchtest Teil eines innovativen, dynamischen Teams werden, das die Zukunft aktiv mitgestaltet? Dann bist du bei uns genau richtig!</p>
+                    <p class="reveal">Wir bei ESC stehen für Fortschritt, Präzision und Nachhaltigkeit. Jeden Tag arbeiten wir daran, die Welt ein Stück besser zu machen – und dafür brauchen wir kreative, engagierte Köpfe wie dich!</p>
+                    <h3 class="reveal">Was dich bei uns erwartet:</h3>
+                    <ul class="benefits">
+                        <li class="reveal">Spannende Projekte in einem wachsenden Markt.</li>
+                        <li class="reveal" style="--delay: .08s">Ein starkes Team, das Herausforderungen gemeinsam meistert.</li>
+                        <li class="reveal" style="--delay: .16s">Persönliche und berufliche Weiterentwicklung.</li>
+                        <li class="reveal" style="--delay: .24s">Eine innovative Arbeitsatmosphäre.</li>
+                        <li class="reveal" style="--delay: .32s">Wertschätzung, Fairness und Flexibilität.</li>
+                    </ul>
+                    <a href="contact.html" class="btn reveal">
+                        Jetzt bewerben
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                </div>
             </div>
-            <p>&copy; <span id="currentYear"></span> ESC. Alle Rechte vorbehalten.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="index.html" class="brand" aria-label="ESC GmbH – Startseite">
+                        <span class="brand-icon"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg></span>
+                        <span>ESC<small>GMBH</small></span>
+                    </a>
+                    <p class="footer-claim">Electric Solution Components – innovative Lösungen für eine nachhaltige Zukunft.</p>
+                </div>
+                <div>
+                    <h4>Kontakt</h4>
+                    <ul>
+                        <li><a href="mailto:office@esc-gmbh.at">office@esc-gmbh.at</a></li>
+                        <li><a href="https://wa.me/4367761471585" target="_blank" rel="noopener noreferrer">+43 677 / 614 71585</a></li>
+                        <li>Stadionstraße 1c, 8572 Bärnbach</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="index.html#leistungen">Leistungen</a></li>
+                        <li><a href="team.html">Team &amp; Karriere</a></li>
+                        <li><a href="contact.html">Kontakt</a></li>
+                        <li><a href="https://www.instagram.com/esc_gmbh/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-big" aria-hidden="true">ESC GMBH</div>
+            <div class="footer-bottom">
+                <span>&copy; <span data-year></span> ESC GmbH. Alle Rechte vorbehalten.</span>
+                <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a></span>
+            </div>
         </div>
     </footer>
 
-    <script>
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    <button class="to-top" type="button" aria-label="Nach oben">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+    </button>
 
-        document.addEventListener("DOMContentLoaded", () => {
-            // Team Section Animation
-            const teamImage = document.querySelector('.team-image');
-            const teamText = document.querySelector('.team-text');
-
-            setTimeout(() => {
-                teamImage.classList.add('animate-in');
-                teamText.classList.add('text-visible');
-            }, 500);
-
-            // Hiring Section Animation
-            const hiringImage = document.querySelector('.hiring-image');
-            const hiringText = document.querySelector('.hiring-text');
-
-            setTimeout(() => {
-                hiringText.classList.add('text-visible');
-            }, 1500); // Text fliegt zuerst rein
-
-            setTimeout(() => {
-                hiringImage.classList.add('animate-in');
-            }, 2000); // Bild fliegt später rein
-        });
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
