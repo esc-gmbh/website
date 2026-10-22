@@ -167,7 +167,8 @@
     /* ---------- Hero-Canvas: Stromimpulse auf einem Leiterbahn-Raster ---------- */
     const canvas = document.querySelector('.hero-canvas');
 
-    if (canvas && !reduceMotion) {
+    // Läuft immer; am großen Bildschirm weniger und (per CSS) blassere Impulse
+    if (canvas) {
         const ctx = canvas.getContext('2d');
         const GRID = 48;
         const DIRS = [[1, 0], [-1, 0], [0, 1], [0, -1]];
@@ -177,6 +178,8 @@
         let running = false;
         let frame = null;
         let lastSpawn = 0;
+        let wide = false;
+        let origin = null; // Mitte der 3D-Szene: am Desktop strömen die Impulse von dort weg
 
         function resize() {
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -185,9 +188,38 @@
             canvas.width = width * dpr;
             canvas.height = height * dpr;
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            wide = width > 1024;
+            const scene = document.querySelector('.hero-visual');
+            if (wide && scene) {
+                const c = canvas.getBoundingClientRect();
+                const r = scene.getBoundingClientRect();
+                origin = { x: r.left - c.left + r.width / 2, y: r.top - c.top + r.height * 0.55, r: Math.min(r.width, r.height) * 0.38 };
+            } else {
+                origin = null;
+            }
         }
 
+        // Richtung, die vom Szenen-Mittelpunkt wegführt
+        const outward = (s, d) => (s.x - origin.x) * d[0] + (s.y - origin.y) * d[1] > 0;
+
         function spawn(x, y) {
+            if (origin && x == null) {
+                // Am Rand der Szene starten, Richtung nach außen
+                const a = Math.random() * Math.PI * 2;
+                const cx = Math.cos(a);
+                const cy = Math.sin(a);
+                const dir = Math.abs(cx) > Math.abs(cy) ? [Math.sign(cx), 0] : [0, Math.sign(cy)];
+                sparks.push({
+                    x: Math.round((origin.x + cx * origin.r) / GRID) * GRID,
+                    y: Math.round((origin.y + cy * origin.r) / GRID) * GRID,
+                    dx: dir[0],
+                    dy: dir[1],
+                    travelled: 0,
+                    speed: 1.5 + Math.random() * 2,
+                    life: 10 + Math.floor(Math.random() * 12)
+                });
+                return;
+            }
             const gx = x == null ? Math.floor(Math.random() * (width / GRID)) * GRID : Math.round(x / GRID) * GRID;
             const gy = y == null ? Math.floor(Math.random() * (height / GRID)) * GRID : Math.round(y / GRID) * GRID;
             const dir = DIRS[Math.floor(Math.random() * 4)];
@@ -208,7 +240,9 @@
             ctx.fillRect(0, 0, width, height);
             ctx.globalCompositeOperation = 'source-over';
 
-            const target = Math.max(10, Math.round((width * height) / 45000));
+            const target = wide
+                ? Math.max(5, Math.round((width * height) / 160000))
+                : Math.max(10, Math.round((width * height) / 45000));
             if (sparks.length < target && Math.random() < 0.25) spawn();
 
             sparks.forEach(s => {
@@ -237,7 +271,9 @@
                     s.life--;
 
                     if (Math.random() < 0.35) {
-                        const turn = Math.random() < 0.5 ? 1 : -1;
+                        let turn = Math.random() < 0.5 ? 1 : -1;
+                        // Am Desktop nur Abzweigungen, die weiter nach außen führen
+                        if (origin && !outward(s, [s.dy * turn, s.dx * -turn])) turn = -turn;
                         [s.dx, s.dy] = [s.dy * turn, s.dx * -turn];
 
                         ctx.fillStyle = 'rgba(233, 240, 29, 0.9)';
@@ -268,7 +304,7 @@
 
         canvas.parentElement.addEventListener('pointermove', e => {
             const now = performance.now();
-            if (now - lastSpawn < 90 || sparks.length > 80) return;
+            if (wide || now - lastSpawn < 90 || sparks.length > 80) return;
             lastSpawn = now;
             const rect = canvas.getBoundingClientRect();
             spawn(e.clientX - rect.left, e.clientY - rect.top);

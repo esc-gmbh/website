@@ -153,19 +153,38 @@ body.has-pointer .cursor-glow {
     height: var(--header-h);
     display: flex;
     align-items: center;
-    transition: background 0.4s var(--ease), border-color 0.4s, backdrop-filter 0.4s, transform 0.4s var(--ease);
-    border-bottom: 1px solid transparent;
+    transition: transform 0.4s var(--ease);
 }
 
-.site-header.scrolled {
+/* Glas-Hintergrund als eigene Ebene: ein backdrop-filter direkt am Header
+   würde das fixe Vollbild-Menü (Handy) auf die Höhe der Leiste begrenzen */
+.site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
     background: rgba(10, 11, 13, 0.72);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
-    border-bottom-color: var(--border);
+    border-bottom: 1px solid var(--border);
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+}
+
+.site-header.scrolled::before {
+    opacity: 1;
 }
 
 .site-header.hidden {
     transform: translateY(-100%);
+}
+
+.nav-open .site-header {
+    transform: none;
+}
+
+.nav-open .site-header::before {
+    opacity: 0;
 }
 
 .header-inner {
@@ -542,6 +561,13 @@ section {
     z-index: -1;
     width: 100%;
     height: 100%;
+}
+
+/* Am großen Bildschirm dezenter, damit die Szene im Vordergrund bleibt */
+@media (min-width: 1025px) {
+    .hero-canvas {
+        opacity: 0.35;
+    }
 }
 
 .hero-inner {
@@ -1531,6 +1557,8 @@ section {
     overflow: hidden;
     border: 1px solid var(--border);
     aspect-ratio: 4 / 3.6;
+    isolation: isolate;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
     background:
         linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 32px 32px,
         linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px) 0 0 / 32px 32px,
@@ -1543,7 +1571,6 @@ section {
     width: 100%;
     height: 100%;
     border: 0;
-    filter: grayscale(0.4) contrast(1.05);
 }
 
 .map-placeholder {
@@ -2245,6 +2272,11 @@ section {
     opacity: 0.8;
 }
 
+/* Im offenen Handy-Menü nicht über dem Kontakt-Button liegen */
+.nav-open .cookie-banner {
+    visibility: hidden;
+}
+
 .cookie-banner.closing {
     animation: slideDown 0.5s var(--ease) both;
 }
@@ -2413,9 +2445,29 @@ section {
         background: rgba(10, 11, 13, 0.97);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
+        padding: calc(var(--header-h) + 10px) 20px 30px;
+        overflow-y: auto;
         clip-path: circle(0 at calc(100% - 43px) 38px);
         transition: clip-path 0.7s var(--ease);
         visibility: hidden;
+    }
+
+    /* Niedrige Fenster: Menü kompakter, Inhalt oben beginnen statt abschneiden */
+    @media (max-height: 640px) {
+        .main-nav {
+            justify-content: flex-start;
+            gap: 4px;
+        }
+
+        .main-nav a {
+            padding-block: 4px;
+            font-size: 30px;
+            line-height: 1.1;
+        }
+
+        .main-nav .btn {
+            margin-top: 10px;
+        }
     }
 
     .nav-open .main-nav {
@@ -2536,6 +2588,17 @@ section {
 
     .footer-grid {
         grid-template-columns: 1fr;
+    }
+
+    /* Seitliches Einfliegen erzeugt auf dem Handy horizontales Wackeln */
+    .reveal.from-left:not(.visible),
+    .reveal.from-right:not(.visible) {
+        transform: translateY(40px);
+    }
+
+    /* Höhere Karte, damit Pin und Ortskarte von Google Platz haben */
+    .map-wrap {
+        aspect-ratio: 1 / 1.05;
     }
 
     .cookie-banner {
