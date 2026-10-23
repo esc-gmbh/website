@@ -1034,6 +1034,12 @@ section {
     pointer-events: none;
 }
 
+/* Speicher-Chip auf der freien Fläche rechts vor dem Speicher, nicht vor dem Haus */
+.chip-storage {
+    left: 70.2%;
+    top: 79.8%;
+}
+
 .chip small {
     display: block;
     font-size: 10px;
@@ -3080,6 +3086,11 @@ section {
     .hero-visual {
         width: min(100%, 460px);
         margin: 10px auto 0;
+    }
+
+    /* Kleinere Szene: Chip etwas tiefer, damit er das Auto nicht berührt */
+    .chip-storage {
+        top: 83.5%;
     }
 
     /* Einspaltig ist die Szene zu schmal für die schwebende App: sie rückt unter das Haus */
