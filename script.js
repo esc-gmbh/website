@@ -15,6 +15,36 @@
         }
     };
 
+    /* ---------- Hell/Dunkel: Standard dunkel, Wahl wird gemerkt ---------- */
+    const root = document.documentElement;
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const isLight = () => root.dataset.theme === 'light';
+
+    function applyTheme(light) {
+        if (light) {
+            root.dataset.theme = 'light';
+        } else {
+            delete root.dataset.theme;
+        }
+        themeMeta?.setAttribute('content', light ? '#f5f6f2' : '#0a0b0d');
+        document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
+            btn.setAttribute('aria-pressed', String(light));
+            btn.setAttribute('aria-label', light ? 'Dunklen Modus aktivieren' : 'Hellen Modus aktivieren');
+        });
+    }
+
+    applyTheme(isLight());
+
+    document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const light = !isLight();
+            root.classList.add('theme-switching');
+            applyTheme(light);
+            storage.set('esc_theme', light ? 'light' : 'dark');
+            setTimeout(() => root.classList.remove('theme-switching'), 450);
+        });
+    });
+
     // Aktuelles Jahr im Footer
     document.querySelectorAll('[data-year]').forEach(el => {
         el.textContent = new Date().getFullYear();
@@ -254,14 +284,14 @@
                 s.travelled += s.speed;
 
                 ctx.lineCap = 'round';
-                ctx.strokeStyle = 'rgba(233, 240, 29, 0.18)';
+                ctx.strokeStyle = isLight() ? 'rgba(150, 156, 0, 0.18)' : 'rgba(233, 240, 29, 0.18)';
                 ctx.lineWidth = 6;
                 ctx.beginPath();
                 ctx.moveTo(px, py);
                 ctx.lineTo(s.x, s.y);
                 ctx.stroke();
 
-                ctx.strokeStyle = 'rgba(248, 252, 150, 0.95)';
+                ctx.strokeStyle = isLight() ? 'rgba(120, 126, 0, 0.8)' : 'rgba(248, 252, 150, 0.95)';
                 ctx.lineWidth = 1.6;
                 ctx.stroke();
 
@@ -277,7 +307,7 @@
                         if (origin && !outward(s, [s.dy * turn, s.dx * -turn])) turn = -turn;
                         [s.dx, s.dy] = [s.dy * turn, s.dx * -turn];
 
-                        ctx.fillStyle = 'rgba(233, 240, 29, 0.9)';
+                        ctx.fillStyle = isLight() ? 'rgba(120, 126, 0, 0.9)' : 'rgba(233, 240, 29, 0.9)';
                         ctx.beginPath();
                         ctx.arc(s.x, s.y, 2.5, 0, Math.PI * 2);
                         ctx.fill();
