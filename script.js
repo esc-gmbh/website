@@ -688,9 +688,50 @@
     if (energy) {
         const d = energy.dataset;
         const HOUSEHOLD_KWH = 3500; // durchschnittlicher Jahresverbrauch eines Haushalts
-        const perSecond = (Number(d.kwp) * Number(d.yield)) / (365.25 * 24 * 3600);
-        const baseTime = new Date(d.baseDate).getTime();
+        const DAY_MS = 864e5;
+        const SOLAR_NOON = 11; // Sonnenhöchststand in Bärnbach (15° O) ≈ 11:00 UTC
+        const perDay = (Number(d.kwp) * Number(d.yield)) / 365.25; // mittlerer Tagesertrag
+        const baseDay = Math.floor(new Date(d.baseDate).getTime() / DAY_MS);
+
+        // Jahreszeit: −1 Mitte Dezember … +1 Mitte Juni
+        const season = day => Math.sin((2 * Math.PI * ((day % 365.25) - 80)) / 365.25);
+        // Tageslänge 8–16 h, Sommertage liefern gut fünfmal so viel wie Wintertage
+        const dayLength = day => 12 + 4 * season(day);
+        const dayEnergy = day => perDay * (1 + 0.7 * season(day));
+
+        // Anteil des Tagesertrags bis zur Uhrzeit (Sinusverlauf zwischen Sonnenauf- und -untergang)
+        function dayShare(day, hours) {
+            const len = dayLength(day);
+            const x = Math.min(Math.max(hours - (SOLAR_NOON - len / 2), 0), len);
+            return (1 - Math.cos((Math.PI * x) / len)) / 2;
+        }
+
+        let cachedDay = null;
+        let beforeToday = 0;
+
+        // Erzeugte kWh seit dem Stichtag bis zum Zeitpunkt t
+        function produced(t) {
+            const day = Math.floor(t / DAY_MS);
+            if (day !== cachedDay) {
+                beforeToday = 0;
+                for (let i = baseDay; i < day; i++) beforeToday += dayEnergy(i);
+                cachedDay = day;
+            }
+            const hours = (t - day * DAY_MS) / 36e5;
+            return Number(d.baseKwh) + beforeToday + dayEnergy(day) * dayShare(day, hours);
+        }
+
+        // Momentanleistung in kW, nachts 0
+        function power(t) {
+            const day = Math.floor(t / DAY_MS);
+            const len = dayLength(day);
+            const x = (t - day * DAY_MS) / 36e5 - (SOLAR_NOON - len / 2);
+            if (x <= 0 || x >= len) return 0;
+            return dayEnergy(day) * (Math.PI / (2 * len)) * Math.sin((Math.PI * x) / len);
+        }
+
         const loadTime = Date.now();
+        const loadProduced = produced(loadTime);
         const format = digits => new Intl.NumberFormat('de-AT', { minimumFractionDigits: digits, maximumFractionDigits: digits });
         const kwh = format(3);
         const euro = format(2);
@@ -700,8 +741,10 @@
             money: energy.querySelector('[data-energy-money]'),
             co2: energy.querySelector('[data-energy-co2]'),
             homes: energy.querySelector('[data-energy-homes]'),
-            session: energy.querySelector('[data-energy-session]')
+            session: energy.querySelector('[data-energy-session]'),
+            status: energy.querySelector('[data-energy-status]')
         };
+        const kw = format(1);
         const COUNT_MS = 2400;
         let countStart = null;
         let counted = false;
@@ -711,7 +754,9 @@
 
         function render() {
             const now = Date.now();
-            let value = Number(d.baseKwh) + ((now - baseTime) / 1000) * perSecond;
+            const current = produced(now);
+            const kwNow = power(now);
+            let value = current;
             if (countStart !== null) {
                 const t = Math.min((performance.now() - countStart) / COUNT_MS, 1);
                 value *= 1 - Math.pow(1 - t, 4);
@@ -721,7 +766,11 @@
             out.money.textContent = euro.format(value * Number(d.price));
             out.co2.textContent = whole.format((value * Number(d.co2)) / 1000);
             out.homes.textContent = whole.format(value / HOUSEHOLD_KWH);
-            out.session.textContent = kwh.format(((now - loadTime) / 1000) * perSecond);
+            out.session.textContent = kwh.format(current - loadProduced);
+            energy.classList.toggle('night', kwNow === 0);
+            out.status.textContent = kwNow > 0
+                ? `Aktuelle Leistung: ${kw.format(kwNow)} kW`
+                : 'Nachts – aktuell keine Erzeugung';
         }
 
         function loop() {

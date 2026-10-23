@@ -328,8 +328,8 @@
 
         <!-- Live-Zähler: Hochrechnung aus installierter Leistung (Platzhalterwerte – echte Zahlen eintragen) -->
         <section class="section energy" data-energy
-                 data-kwp="80"
-                 data-base-kwh="200000"
+                 data-kwp="40"
+                 data-base-kwh="60000"
                  data-base-date="2026-01-01"
                  data-yield="1050"
                  data-co2="0.2"
@@ -344,6 +344,7 @@
                     <span class="energy-label"><i class="live-dot"></i>Mit ESC-Anlagen erzeugt</span>
                     <div class="energy-value"><b data-energy-total>0</b><span>kWh</span></div>
                     <div class="energy-line" aria-hidden="true"><i></i></div>
+                    <p class="energy-status" data-energy-status></p>
                 </div>
 
                 <div class="energy-stats">
@@ -365,7 +366,7 @@
                     </div>
                 </div>
 
-                <p class="energy-note reveal">Hochrechnung auf Basis der installierten Leistung aller von ESC errichteten PV-Anlagen und eines durchschnittlichen Strompreises von 25 Cent/kWh.</p>
+                <p class="energy-note reveal">Hochrechnung auf Basis der installierten Leistung aller von ESC errichteten PV-Anlagen mit typischem Tages- und Jahresverlauf sowie eines durchschnittlichen Strompreises von 25 Cent/kWh.</p>
             </div>
         </section>
 

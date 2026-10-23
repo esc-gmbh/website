@@ -1586,6 +1586,25 @@ section {
     animation: energyPulse 2.4s linear infinite;
 }
 
+.energy-status {
+    margin: 16px 0 0;
+    min-height: 1.5em;
+    font-size: 15px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Nachts: keine Erzeugung, Impuls und Live-Punkt ruhen */
+.energy.night .live-dot {
+    background: #b9c8ff;
+    box-shadow: 0 0 10px #b9c8ff;
+    animation: none;
+}
+
+.energy.night .energy-line::after {
+    display: none;
+}
+
 @keyframes energyPulse {
     from { left: 0; opacity: 0; }
     10% { opacity: 1; }
