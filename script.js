@@ -688,9 +688,50 @@
     if (energy) {
         const d = energy.dataset;
         const HOUSEHOLD_KWH = 3500; // durchschnittlicher Jahresverbrauch eines Haushalts
-        const perSecond = (Number(d.kwp) * Number(d.yield)) / (365.25 * 24 * 3600);
-        const baseTime = new Date(d.baseDate).getTime();
+        const DAY_MS = 864e5;
+        const SOLAR_NOON = 11; // Sonnenhöchststand in Bärnbach (15° O) ≈ 11:00 UTC
+        const perDay = (Number(d.kwp) * Number(d.yield)) / 365.25; // mittlerer Tagesertrag
+        const baseDay = Math.floor(new Date(d.baseDate).getTime() / DAY_MS);
+
+        // Jahreszeit: −1 Mitte Dezember … +1 Mitte Juni
+        const season = day => Math.sin((2 * Math.PI * ((day % 365.25) - 80)) / 365.25);
+        // Tageslänge 8–16 h, Sommertage liefern gut fünfmal so viel wie Wintertage
+        const dayLength = day => 12 + 4 * season(day);
+        const dayEnergy = day => perDay * (1 + 0.7 * season(day));
+
+        // Anteil des Tagesertrags bis zur Uhrzeit (Sinusverlauf zwischen Sonnenauf- und -untergang)
+        function dayShare(day, hours) {
+            const len = dayLength(day);
+            const x = Math.min(Math.max(hours - (SOLAR_NOON - len / 2), 0), len);
+            return (1 - Math.cos((Math.PI * x) / len)) / 2;
+        }
+
+        let cachedDay = null;
+        let beforeToday = 0;
+
+        // Erzeugte kWh seit dem Stichtag bis zum Zeitpunkt t
+        function produced(t) {
+            const day = Math.floor(t / DAY_MS);
+            if (day !== cachedDay) {
+                beforeToday = 0;
+                for (let i = baseDay; i < day; i++) beforeToday += dayEnergy(i);
+                cachedDay = day;
+            }
+            const hours = (t - day * DAY_MS) / 36e5;
+            return Number(d.baseKwh) + beforeToday + dayEnergy(day) * dayShare(day, hours);
+        }
+
+        // Momentanleistung in kW, nachts 0
+        function power(t) {
+            const day = Math.floor(t / DAY_MS);
+            const len = dayLength(day);
+            const x = (t - day * DAY_MS) / 36e5 - (SOLAR_NOON - len / 2);
+            if (x <= 0 || x >= len) return 0;
+            return dayEnergy(day) * (Math.PI / (2 * len)) * Math.sin((Math.PI * x) / len);
+        }
+
         const loadTime = Date.now();
+        const loadProduced = produced(loadTime);
         const format = digits => new Intl.NumberFormat('de-AT', { minimumFractionDigits: digits, maximumFractionDigits: digits });
         const kwh = format(3);
         const euro = format(2);
@@ -700,8 +741,10 @@
             money: energy.querySelector('[data-energy-money]'),
             co2: energy.querySelector('[data-energy-co2]'),
             homes: energy.querySelector('[data-energy-homes]'),
-            session: energy.querySelector('[data-energy-session]')
+            session: energy.querySelector('[data-energy-session]'),
+            status: energy.querySelector('[data-energy-status]')
         };
+        const kw = format(1);
         const COUNT_MS = 2400;
         let countStart = null;
         let counted = false;
@@ -711,7 +754,9 @@
 
         function render() {
             const now = Date.now();
-            let value = Number(d.baseKwh) + ((now - baseTime) / 1000) * perSecond;
+            const current = produced(now);
+            const kwNow = power(now);
+            let value = current;
             if (countStart !== null) {
                 const t = Math.min((performance.now() - countStart) / COUNT_MS, 1);
                 value *= 1 - Math.pow(1 - t, 4);
@@ -721,7 +766,11 @@
             out.money.textContent = euro.format(value * Number(d.price));
             out.co2.textContent = whole.format((value * Number(d.co2)) / 1000);
             out.homes.textContent = whole.format(value / HOUSEHOLD_KWH);
-            out.session.textContent = kwh.format(((now - loadTime) / 1000) * perSecond);
+            out.session.textContent = kwh.format(current - loadProduced);
+            energy.classList.toggle('night', kwNow === 0);
+            out.status.textContent = kwNow > 0
+                ? `Aktuelle Leistung: ${kw.format(kwNow)} kW`
+                : 'Nachts – aktuell keine Erzeugung';
         }
 
         function loop() {
@@ -757,6 +806,143 @@
             document.hidden ? stopEnergy() : startEnergy();
         });
     }
+
+    /* ---------- Ersparnis-Rechner ---------- */
+    const calc = document.querySelector('[data-calc]');
+
+    if (calc) {
+        const cfg = calc.dataset;
+        const input = name => calc.querySelector(`[data-in="${name}"]`);
+        const output = name => calc.querySelector(`[data-out="${name}"]`);
+        const show = name => calc.querySelector(`[data-show="${name}"]`);
+        const inputs = { use: input('use'), kwp: input('kwp'), price: input('price'), storage: input('storage') };
+        const cta = calc.querySelector('[data-calc-cta]');
+        const format = digits => new Intl.NumberFormat('de-AT', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+        const whole = format(0);
+        const one = format(1);
+        const YEARS = 20;
+
+        function estimate() {
+            const use = Number(inputs.use.value);
+            const kwp = Number(inputs.kwp.value);
+            const price = Number(inputs.price.value) / 100;
+            const storage = inputs.storage.checked;
+            const produced = kwp * Number(cfg.yield);
+
+            // Eigenversorgung steigt mit der Anlagengröße, flacht aber ab; Speicher verdoppelt sie etwa
+            const ratio = produced / use;
+            const curve = (1 - Math.exp(-1.6 * ratio)) / (1 - Math.exp(-1.6));
+            const autarky = Math.min(curve * (storage ? 0.65 : 0.33), storage ? 0.85 : 0.45, ratio);
+            const own = autarky * use;
+            const save = own * price + (produced - own) * Number(cfg.feedIn);
+            const cost = Number(cfg.costBase) + kwp * Number(cfg.costKwp) + (storage ? Number(cfg.costStorage) : 0);
+
+            return { use, kwp, storage, save, autarky, years: cost / save, co2: (produced * Number(cfg.co2)) / 1000 };
+        }
+
+        // Angezeigte Werte gleiten zum neuen Ergebnis
+        const shown = { save: 0, total: 0, autarky: 0, years: 0, co2: 0 };
+        let target = shown;
+        let frame = null;
+
+        function paint() {
+            output('save').textContent = whole.format(shown.save);
+            output('total').textContent = `${whole.format(shown.total)} €`;
+            output('autarky').textContent = `${whole.format(shown.autarky * 100)} %`;
+            output('years').textContent = target.years > 25 ? '> 25 Jahre' : `ca. ${one.format(shown.years)} Jahre`;
+            output('co2').textContent = `${one.format(shown.co2)} t`;
+        }
+
+        function glide() {
+            let moving = false;
+            Object.keys(shown).forEach(key => {
+                const diff = target[key] - shown[key];
+                if (Math.abs(diff) > Math.abs(target[key]) * 0.001 + 0.001) {
+                    shown[key] += diff * 0.18;
+                    moving = true;
+                } else {
+                    shown[key] = target[key];
+                }
+            });
+            paint();
+            frame = moving ? requestAnimationFrame(glide) : null;
+        }
+
+        function update() {
+            Object.values(inputs).forEach(el => {
+                if (el.type === 'range') {
+                    el.style.setProperty('--fill', `${((el.value - el.min) / (el.max - el.min)) * 100}%`);
+                }
+            });
+            show('use').textContent = `${whole.format(inputs.use.value)} kWh`;
+            show('kwp').textContent = `${one.format(inputs.kwp.value)} kWp`;
+            show('price').textContent = `${inputs.price.value} Cent/kWh`;
+
+            const r = estimate();
+            target = { save: r.save, total: r.save * YEARS, autarky: r.autarky, years: r.years, co2: r.co2 };
+            output('bar').style.width = `${r.autarky * 100}%`;
+
+            if (reduceMotion) {
+                Object.assign(shown, target);
+                paint();
+            } else if (!frame) {
+                frame = requestAnimationFrame(glide);
+            }
+
+            // Szenario als Text an das Kontaktformular übergeben
+            const message = [
+                'Anfrage aus dem Ersparnis-Rechner:',
+                `- Stromverbrauch: ${whole.format(r.use)} kWh pro Jahr`,
+                `- PV-Anlage: ${one.format(r.kwp)} kWp`,
+                `- Stromspeicher: ${r.storage ? 'ja' : 'nein'}`,
+                `- Geschätzte Ersparnis: ca. ${whole.format(r.save)} € pro Jahr`
+            ].join('\n');
+            cta.href = `contact.html?nachricht=${encodeURIComponent(message)}`;
+        }
+
+        Object.values(inputs).forEach(el => el.addEventListener('input', update));
+        update();
+    }
+
+    /* ---------- FAQ: weich auf- und zuklappen, immer nur eine Antwort offen ---------- */
+    const faqItems = [...document.querySelectorAll('.faq-item')];
+
+    function setFaq(item, open) {
+        const body = item.querySelector('.faq-body');
+        const closing = item.classList.contains('closing');
+        if (open === (item.open && !closing)) return;
+
+        if (reduceMotion) {
+            item.open = open;
+            return;
+        }
+
+        const from = item.open ? body.offsetHeight : 0;
+        item._anim?.cancel();
+        item.classList.toggle('closing', !open);
+        if (open) item.open = true;
+
+        item._anim = body.animate(
+            { height: [`${from}px`, `${open ? body.scrollHeight : 0}px`] },
+            { duration: 420, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+        );
+        item._anim.onfinish = () => {
+            item._anim = null;
+            if (!open) {
+                item.open = false;
+                item.classList.remove('closing');
+            }
+        };
+    }
+
+    faqItems.forEach(item => {
+        item.querySelector('summary').addEventListener('click', e => {
+            e.preventDefault();
+            const open = !item.open || item.classList.contains('closing');
+            if (open) faqItems.forEach(other => other !== item && setFaq(other, false));
+            setFaq(item, open);
+        });
+    });
 
     /* ---------- Google Maps erst nach Zustimmung laden ---------- */
     const COOKIE_KEY = 'esc_cookie_consent';
@@ -801,6 +987,13 @@
 
     /* ---------- Kontaktformular ohne Seitenwechsel absenden ---------- */
     const form = document.querySelector('.contact-form');
+
+    // Vorausgefüllte Nachricht, z. B. aus dem Ersparnis-Rechner
+    const prefill = new URLSearchParams(location.search).get('nachricht');
+    const messageField = form?.querySelector('#message');
+    if (prefill && messageField && !messageField.value) {
+        messageField.value = prefill;
+    }
 
     if (form && window.fetch) {
         const status = form.querySelector('.form-status');

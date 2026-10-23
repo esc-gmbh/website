@@ -1485,6 +1485,391 @@ section {
     font-size: 16px;
 }
 
+/* ---------- Ersparnis-Rechner ---------- */
+/* „Über uns“ folgt direkt, daher weniger Abstand nach unten */
+.calc {
+    padding-bottom: clamp(20px, 4vw, 50px);
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    align-items: stretch;
+}
+
+.calc-card {
+    padding: clamp(24px, 3vw, 36px);
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+}
+
+.calc-results {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(160deg, rgba(233, 240, 29, 0.08), rgba(255, 255, 255, 0.02) 55%);
+    border-color: rgba(233, 240, 29, 0.25);
+}
+
+.calc-field + .calc-field {
+    margin-top: 30px;
+}
+
+.calc-field label {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    font-weight: 500;
+}
+
+.calc-field output {
+    font-size: 20px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* Schieberegler mit gelber Füllung bis zum Griff */
+.calc input[type="range"] {
+    --fill: 50%;
+    width: 100%;
+    height: 28px;
+    margin: 10px 0 0;
+    background: transparent;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.calc input[type="range"]::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent) var(--fill), rgba(255, 255, 255, 0.12) var(--fill));
+}
+
+.calc input[type="range"]::-moz-range-track {
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent) var(--fill), rgba(255, 255, 255, 0.12) var(--fill));
+}
+
+.calc input[type="range"]::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+    margin-top: -9px;
+    border-radius: 50%;
+    border: 4px solid var(--bg);
+    background: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), 0 0 16px var(--accent-glow);
+    -webkit-appearance: none;
+    appearance: none;
+    transition: transform 0.2s;
+}
+
+.calc input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 4px solid var(--bg);
+    background: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), 0 0 16px var(--accent-glow);
+}
+
+.calc input[type="range"]:active::-webkit-slider-thumb {
+    transform: scale(1.15);
+}
+
+.calc input[type="range"]:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+.calc-scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+/* Schalter für den Speicher */
+.calc-switch {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 32px;
+    padding-top: 26px;
+    border-top: 1px solid var(--border);
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.calc-switch input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.calc-switch small {
+    display: block;
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.switch {
+    position: relative;
+    flex: none;
+    width: 50px;
+    height: 28px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.12);
+    transition: background 0.3s;
+}
+
+.switch::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--text);
+    transition: transform 0.35s var(--ease), background 0.3s;
+}
+
+.calc-switch input:checked + .switch {
+    background: var(--accent);
+    box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.calc-switch input:checked + .switch::after {
+    transform: translateX(22px);
+    background: #111;
+}
+
+.calc-switch input:focus-visible + .switch {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.calc-label {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.calc-big {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-top: 6px;
+    font-family: var(--font-display);
+    line-height: 1;
+}
+
+.calc-big b {
+    font-size: clamp(56px, 7vw, 92px);
+    color: var(--accent);
+    text-shadow: 0 0 40px var(--accent-glow);
+    font-variant-numeric: tabular-nums;
+}
+
+.calc-big span {
+    font-size: clamp(28px, 3vw, 40px);
+}
+
+.calc-sub {
+    margin: 10px 0 26px;
+    color: var(--muted);
+}
+
+.calc-sub b {
+    color: var(--text);
+    font-weight: 500;
+}
+
+/* Anteil Eigenstrom vs. Netzbezug */
+.calc-bar {
+    height: 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+}
+
+.calc-bar i {
+    display: block;
+    height: 100%;
+    width: 0;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--accent), #fffbb0);
+    box-shadow: 0 0 14px var(--accent-glow);
+    transition: width 0.6s var(--ease);
+}
+
+.calc-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.calc-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.calc-legend i {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}
+
+.calc-legend .own { background: var(--accent); }
+.calc-legend .grid { background: rgba(255, 255, 255, 0.25); }
+
+.calc-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 26px 0 28px;
+}
+
+.calc-stats div {
+    padding: 14px 12px;
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+}
+
+.calc-stats small {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.calc-stats b {
+    display: block;
+    margin-top: 4px;
+    font-size: 20px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+.calc-results .btn {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+.calc-note {
+    margin: 24px auto 0;
+    max-width: 680px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* ---------- Häufige Fragen ---------- */
+/* Schließt direkt an „Über uns“ an, daher weniger Abstand nach oben */
+.faq {
+    padding-top: clamp(20px, 4vw, 50px);
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(40px, 6vw, 90px);
+    align-items: start;
+}
+
+.faq-head {
+    position: sticky;
+    top: calc(var(--header-h) + 30px);
+}
+
+.faq-head .section-lead {
+    margin-bottom: 28px;
+}
+
+.faq-list {
+    display: grid;
+    gap: 12px;
+}
+
+.faq-item {
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    transition: background 0.3s, border-color 0.3s;
+}
+
+.faq-item:hover {
+    background: var(--surface-hover);
+}
+
+.faq-item[open]:not(.closing) {
+    border-color: rgba(233, 240, 29, 0.35);
+}
+
+.faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 20px 22px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* Plus wird beim Öffnen zum Minus */
+.faq-item summary::after {
+    content: '';
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background:
+        linear-gradient(var(--accent), var(--accent)) center / 12px 2px no-repeat,
+        linear-gradient(var(--accent), var(--accent)) center / 2px 12px no-repeat,
+        var(--accent-soft);
+    transition: transform 0.4s var(--ease);
+}
+
+.faq-item[open]:not(.closing) summary::after {
+    transform: rotate(135deg);
+}
+
+.faq-body {
+    overflow: hidden;
+}
+
+.faq-body p {
+    margin: 0;
+    padding: 0 22px 22px;
+    color: var(--muted);
+}
+
 /* ---------- Live-Zähler: erzeugte Energie ---------- */
 .energy {
     position: relative;
@@ -1584,6 +1969,25 @@ section {
     background: #fffbb0;
     box-shadow: 0 0 12px 3px var(--accent-glow);
     animation: energyPulse 2.4s linear infinite;
+}
+
+.energy-status {
+    margin: 16px 0 0;
+    min-height: 1.5em;
+    font-size: 15px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Nachts: keine Erzeugung, Impuls und Live-Punkt ruhen */
+.energy.night .live-dot {
+    background: #b9c8ff;
+    box-shadow: 0 0 10px #b9c8ff;
+    animation: none;
+}
+
+.energy.night .energy-line::after {
+    display: none;
 }
 
 @keyframes energyPulse {
@@ -2576,6 +2980,8 @@ section {
     }
 
     .about-grid,
+    .faq-grid,
+    .calc-grid,
     .contact-grid,
     .feature-split,
     .feature-split.reverse {
@@ -2600,6 +3006,10 @@ section {
 
     .footer-grid > :first-child {
         grid-column: 1 / -1;
+    }
+
+    .faq-head {
+        position: static;
     }
 }
 
@@ -2729,6 +3139,28 @@ section {
     .energy-stats {
         grid-template-columns: 1fr;
         gap: 12px;
+    }
+
+    .faq-item summary {
+        padding: 16px 18px;
+        font-size: 16px;
+    }
+
+    .calc-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .calc-stats div:last-child {
+        grid-column: span 2;
+    }
+
+    .calc-results .btn {
+        align-self: stretch;
+    }
+
+    .faq-body p {
+        padding: 0 18px 18px;
+        font-size: 15px;
     }
 
     /* Szene auf dem Handy: App und Chips kleiner, App bleibt im Bild */
