@@ -55,6 +55,7 @@
             footerBig.style.setProperty('--fill', `${Math.min(Math.max(p, 0), 1) * 100}%`);
         }
         updateProcess();
+        updateEnergyLine();
         updateNavSpy();
 
         lastY = y;
@@ -667,6 +668,93 @@
         processList.style.setProperty('--progress', p);
         processSteps.forEach((step, i) => {
             step.classList.toggle('lit', p >= i / Math.max(processSteps.length - 1, 1) - 0.001 && p > 0);
+        });
+    }
+
+    /* ---------- Live-Zähler: erzeugte Energie aller ESC-Anlagen ---------- */
+    const energy = document.querySelector('[data-energy]');
+    const energyLine = energy?.querySelector('.energy-line');
+
+    // Leitung füllt sich, während der Abschnitt durchs Bild scrollt
+    function updateEnergyLine() {
+        if (!energyLine) return;
+        const rect = energyLine.getBoundingClientRect();
+        const start = window.innerHeight * 0.9;
+        const end = window.innerHeight * 0.3;
+        const p = Math.min(Math.max((start - rect.top) / (start - end), 0), 1);
+        energyLine.style.setProperty('--p', p);
+    }
+
+    if (energy) {
+        const d = energy.dataset;
+        const HOUSEHOLD_KWH = 3500; // durchschnittlicher Jahresverbrauch eines Haushalts
+        const perSecond = (Number(d.kwp) * Number(d.yield)) / (365.25 * 24 * 3600);
+        const baseTime = new Date(d.baseDate).getTime();
+        const loadTime = Date.now();
+        const format = digits => new Intl.NumberFormat('de-AT', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+        const kwh = format(3);
+        const euro = format(2);
+        const whole = format(0);
+        const out = {
+            total: energy.querySelector('[data-energy-total]'),
+            money: energy.querySelector('[data-energy-money]'),
+            co2: energy.querySelector('[data-energy-co2]'),
+            homes: energy.querySelector('[data-energy-homes]'),
+            session: energy.querySelector('[data-energy-session]')
+        };
+        const COUNT_MS = 2400;
+        let countStart = null;
+        let counted = false;
+        let visible = false;
+        let frame = null;
+        let timer = null;
+
+        function render() {
+            const now = Date.now();
+            let value = Number(d.baseKwh) + ((now - baseTime) / 1000) * perSecond;
+            if (countStart !== null) {
+                const t = Math.min((performance.now() - countStart) / COUNT_MS, 1);
+                value *= 1 - Math.pow(1 - t, 4);
+                if (t === 1) countStart = null;
+            }
+            out.total.textContent = kwh.format(value);
+            out.money.textContent = euro.format(value * Number(d.price));
+            out.co2.textContent = whole.format((value * Number(d.co2)) / 1000);
+            out.homes.textContent = whole.format(value / HOUSEHOLD_KWH);
+            out.session.textContent = kwh.format(((now - loadTime) / 1000) * perSecond);
+        }
+
+        function loop() {
+            render();
+            frame = requestAnimationFrame(loop);
+        }
+
+        function startEnergy() {
+            if (!visible || document.hidden || frame || timer) return;
+            if (!counted) {
+                counted = true;
+                if (!reduceMotion) countStart = performance.now();
+            }
+            // Ohne Bewegung: einmal pro Sekunde statt flüssig hochzählen
+            reduceMotion ? (render(), timer = setInterval(render, 1000)) : loop();
+        }
+
+        function stopEnergy() {
+            cancelAnimationFrame(frame);
+            clearInterval(timer);
+            frame = null;
+            timer = null;
+        }
+
+        updateEnergyLine();
+
+        new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting;
+            visible ? startEnergy() : stopEnergy();
+        }).observe(energy);
+
+        document.addEventListener('visibilitychange', () => {
+            document.hidden ? stopEnergy() : startEnergy();
         });
     }
 

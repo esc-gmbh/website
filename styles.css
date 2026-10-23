@@ -638,6 +638,12 @@ section {
     will-change: transform;
 }
 
+/* Bezugsrahmen der Chips: nur die Szene, damit die App-Karte auf dem Handy nichts verschiebt */
+.scene {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
 .iso {
     display: block;
     width: 100%;
@@ -1477,6 +1483,171 @@ section {
     margin: 0;
     color: var(--muted);
     font-size: 16px;
+}
+
+/* ---------- Live-Zähler: erzeugte Energie ---------- */
+.energy {
+    position: relative;
+    overflow: hidden;
+}
+
+.energy::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    width: min(900px, 120vw);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(233, 240, 29, 0.09), transparent 62%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.energy-counter {
+    position: relative;
+    text-align: center;
+}
+
+.energy-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #5dffa0;
+    box-shadow: 0 0 10px #5dffa0;
+    animation: blink 1.6s ease-in-out infinite;
+}
+
+.energy-value {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0 14px;
+    margin: 10px 0 26px;
+    font-family: var(--font-display);
+    line-height: 1;
+}
+
+.energy-value b {
+    font-size: clamp(46px, 10vw, 128px);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--accent);
+    text-shadow: 0 0 40px var(--accent-glow);
+}
+
+.energy-value span {
+    font-size: clamp(24px, 3.4vw, 42px);
+    text-transform: uppercase;
+    color: var(--text);
+}
+
+/* Leitung füllt sich beim Scrollen, Impuls läuft dauerhaft */
+.energy-line {
+    --p: 0;
+    position: relative;
+    max-width: 760px;
+    height: 2px;
+    margin: 0 auto;
+    background: var(--border);
+}
+
+.energy-line i {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--accent), #fffbb0);
+    box-shadow: 0 0 14px var(--accent-glow);
+    transform-origin: 0 50%;
+    transform: scaleX(var(--p));
+}
+
+.energy-line::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #fffbb0;
+    box-shadow: 0 0 12px 3px var(--accent-glow);
+    animation: energyPulse 2.4s linear infinite;
+}
+
+@keyframes energyPulse {
+    from { left: 0; opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    to { left: calc(100% - 8px); opacity: 0; }
+}
+
+.energy-stats {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    max-width: 1100px;
+    margin: clamp(40px, 6vw, 64px) auto 0;
+}
+
+/* Ersparnis hervorgehoben */
+.energy-stat.money {
+    background: var(--accent-soft);
+    border-color: rgba(233, 240, 29, 0.35);
+    box-shadow: 0 0 30px -10px var(--accent-glow);
+}
+
+.energy-stat.money b {
+    color: var(--accent);
+}
+
+.energy-stat {
+    padding: 22px 24px;
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.energy-stat small {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.energy-stat b {
+    display: block;
+    margin-top: 6px;
+    font-size: clamp(22px, 2.4vw, 28px);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+.energy-stat span {
+    color: var(--accent);
+}
+
+.energy-note {
+    position: relative;
+    margin: 26px auto 0;
+    max-width: 560px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
 }
 
 /* ---------- Über uns / Kontakt-Info ---------- */
@@ -2381,7 +2552,8 @@ section {
         display: none;
     }
 
-    .services-grid {
+    .services-grid,
+    .energy-stats {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -2554,13 +2726,18 @@ section {
         min-height: 0;
     }
 
+    .energy-stats {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
     /* Szene auf dem Handy: App und Chips kleiner, App bleibt im Bild */
     .hero-visual .app-card {
         position: relative;
         top: auto;
         right: auto;
         width: 100%;
-        max-width: 320px;
+        max-width: 270px;
         margin: 6px auto 0;
         transform: translateZ(60px);
     }
@@ -2641,7 +2818,12 @@ section {
     .cta-box::before,
     .map-pin::before,
     .map-pin::after,
-    .scroll-hint .mouse::after {
+    .scroll-hint .mouse::after,
+    .energy-line::after {
         animation: none;
+    }
+
+    .energy-line::after {
+        display: none;
     }
 }
