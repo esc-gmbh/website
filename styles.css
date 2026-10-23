@@ -3062,6 +3062,16 @@ section {
 }
 
 /* ---------- Responsive ---------- */
+/* Schmaler Desktop: Szene wird kleiner, die App schrumpft mit und rückt in die Ecke */
+@media (min-width: 1025px) and (max-width: 1300px) {
+    .app-card {
+        top: -2%;
+        right: 5%;
+        transform-origin: 100% 0;
+        transform: translateZ(120px) scale(0.74);
+    }
+}
+
 @media (max-width: 1024px) {
     .hero-inner {
         grid-template-columns: 1fr;
@@ -3070,6 +3080,17 @@ section {
     .hero-visual {
         width: min(100%, 460px);
         margin: 10px auto 0;
+    }
+
+    /* Einspaltig ist die Szene zu schmal für die schwebende App: sie rückt unter das Haus */
+    .hero-visual .app-card {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        max-width: 270px;
+        margin: 6px auto 0;
+        transform: translateZ(60px);
     }
 
     .scroll-hint {
@@ -3266,16 +3287,70 @@ section {
         font-size: 16px;
     }
 
-    .calc-stats {
-        grid-template-columns: 1fr 1fr;
+    /* Rechner auf dem Handy kompakter */
+    .calc-grid {
+        gap: 14px;
     }
 
-    .calc-stats div:last-child {
-        grid-column: span 2;
+    .calc-card {
+        padding: 20px 18px;
+    }
+
+    .calc-field + .calc-field {
+        margin-top: 14px;
+    }
+
+    .calc-field output {
+        font-size: 17px;
+    }
+
+    .calc input[type="range"] {
+        margin-top: 2px;
+    }
+
+    .calc-scale {
+        display: none;
+    }
+
+    .calc-switch {
+        margin-top: 16px;
+        padding-top: 14px;
+    }
+
+    .calc-big b {
+        font-size: 54px;
+    }
+
+    .calc-sub {
+        margin: 6px 0 16px;
+        font-size: 15px;
+    }
+
+    .calc-stats {
+        gap: 6px;
+        margin: 16px 0 18px;
+    }
+
+    .calc-stats div {
+        padding: 10px 8px;
+    }
+
+    .calc-stats small {
+        font-size: 9.5px;
+        letter-spacing: 0.4px;
+    }
+
+    .calc-stats b {
+        font-size: 15px;
     }
 
     .calc-results .btn {
         align-self: stretch;
+    }
+
+    .calc-note {
+        margin-top: 14px;
+        font-size: 12px;
     }
 
     .faq-body p {
@@ -3283,17 +3358,7 @@ section {
         font-size: 15px;
     }
 
-    /* Szene auf dem Handy: App und Chips kleiner, App bleibt im Bild */
-    .hero-visual .app-card {
-        position: relative;
-        top: auto;
-        right: auto;
-        width: 100%;
-        max-width: 270px;
-        margin: 6px auto 0;
-        transform: translateZ(60px);
-    }
-
+    /* Szene auf dem Handy: Chips kleiner */
     .hero-visual .chip {
         transform: translate(-50%, -100%) translateZ(70px) scale(0.85);
     }

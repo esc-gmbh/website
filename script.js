@@ -879,7 +879,7 @@
             output('save').textContent = whole.format(shown.save);
             output('total').textContent = `${whole.format(shown.total)} €`;
             output('autarky').textContent = `${whole.format(shown.autarky * 100)} %`;
-            output('years').textContent = target.years > 25 ? '> 25 Jahre' : `ca. ${one.format(shown.years)} Jahre`;
+            output('years').textContent = target.years > 25 ? '> 25 Jahre' : `${one.format(shown.years)} Jahre`;
             output('co2').textContent = `${one.format(shown.co2)} t`;
         }
 
