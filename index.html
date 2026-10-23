@@ -6,13 +6,77 @@
     <title>ESC GmbH – Elektrotechnik, Photovoltaik &amp; Smart Home</title>
     <meta name="description" content="ESC GmbH aus Bärnbach: moderne Elektrotechnik, Photovoltaik, Smart Home, Installation, Wartung und elektrische Prüfungen – alles aus einer Hand.">
     <meta name="theme-color" content="#0a0b0d">
-    <link rel="stylesheet" href="styles.css?v=4">
+    <link rel="stylesheet" href="styles.css?v=6">
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
     <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=2">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png?v=2">
     <link rel="icon" type="image/png" sizes="144x144" href="/favicon-144.png?v=2">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "Wie lange dauert die Installation einer PV-Anlage?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Die Montage auf einem Einfamilienhaus ist in der Regel in wenigen Tagen erledigt. Inklusive Beratung, Planung und Anmeldung beim Netzbetreiber sollten Sie insgesamt mit einigen Wochen rechnen – den genauen Zeitplan besprechen wir mit Ihnen vorab."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Lohnt sich ein Stromspeicher?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ein Speicher hebt den Anteil Ihres selbst genutzten Sonnenstroms deutlich – besonders, wenn Sie abends und nachts viel verbrauchen. Ob und in welcher Größe er sich für Sie rechnet, hängt von Ihrem Verbrauch ab. Das rechnen wir gemeinsam mit Ihnen durch."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Kann ich mein E-Auto mit Sonnenstrom laden?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ja. Mit einer passenden Wallbox lädt Ihr Auto bevorzugt dann, wenn die PV-Anlage Überschuss produziert. Wir installieren die Wallbox und binden sie in Ihre Anlage ein."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Kann ich Smart Home auch nachrüsten?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Ja. Viele Funktionen wie Licht-, Heizungs- oder Beschattungssteuerung lassen sich auch in bestehenden Gebäuden nachrüsten – oft mit Funklösungen und ohne große Stemmarbeiten."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Wann sollte meine Elektroanlage überprüft werden?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Für Betriebe und vermietete Objekte gibt es gesetzliche Prüfpflichten. Auch privat ist eine Überprüfung sinnvoll – etwa beim Kauf oder Umbau eines Hauses oder wenn die Anlage schon viele Jahre alt ist. Wir prüfen Ihre Anlage und dokumentieren das Ergebnis."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Gibt es Förderungen?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Für Photovoltaik, Speicher und Ladestationen gibt es immer wieder Förderungen von Bund, Land und Gemeinden. Die Bedingungen ändern sich regelmäßig – wir sagen Ihnen, was aktuell möglich ist, und unterstützen Sie beim Antrag."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Wie läuft eine Anfrage ab?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sie schreiben uns oder rufen an, wir melden uns zeitnah und vereinbaren einen Termin zur Beratung. Danach erhalten Sie ein Angebot – und wenn alles passt, kümmern wir uns um Planung, Installation und Wartung aus einer Hand."
+                }
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
     <div class="scroll-progress" aria-hidden="true"></div>
@@ -403,6 +467,75 @@
             </div>
         </section>
 
+        <!-- Ersparnis-Rechner: grobe Schätzung (Richtwerte unten an der Sektion anpassen) -->
+        <section id="rechner" class="section calc" data-calc
+                 data-yield="1050"
+                 data-feed-in="0.08"
+                 data-cost-base="500"
+                 data-cost-kwp="1000"
+                 data-cost-storage="4000"
+                 data-co2="0.2">
+            <div class="container">
+                <div class="section-head center">
+                    <span class="eyebrow reveal">Ersparnis-Rechner</span>
+                    <h2 class="section-title split-words">Was bringt <span class="accent">Ihre Anlage?</span></h2>
+                    <p class="section-lead reveal">Schieben Sie die Regler und sehen Sie sofort, wie viel Sie mit eigenem Sonnenstrom sparen können.</p>
+                </div>
+
+                <div class="calc-grid">
+                    <div class="calc-card calc-inputs reveal from-left">
+                        <div class="calc-field">
+                            <label for="calc-use">Stromverbrauch pro Jahr <output data-show="use"></output></label>
+                            <input type="range" id="calc-use" min="2000" max="15000" step="500" value="4500" data-in="use">
+                            <div class="calc-scale"><span>2.000</span><span>15.000 kWh</span></div>
+                        </div>
+                        <div class="calc-field">
+                            <label for="calc-kwp">Größe der PV-Anlage <output data-show="kwp"></output></label>
+                            <input type="range" id="calc-kwp" min="3" max="20" step="0.5" value="8" data-in="kwp">
+                            <div class="calc-scale"><span>3</span><span>20 kWp</span></div>
+                        </div>
+                        <div class="calc-field">
+                            <label for="calc-price">Strompreis <output data-show="price"></output></label>
+                            <input type="range" id="calc-price" min="15" max="45" step="1" value="25" data-in="price">
+                            <div class="calc-scale"><span>15</span><span>45 Cent/kWh</span></div>
+                        </div>
+                        <label class="calc-switch">
+                            <input type="checkbox" data-in="storage" checked>
+                            <span class="switch" aria-hidden="true"></span>
+                            <span>Mit Stromspeicher <small>ca. 10 kWh</small></span>
+                        </label>
+                    </div>
+
+                    <div class="calc-card calc-results reveal from-right" aria-live="polite">
+                        <small class="calc-label">Ersparnis pro Jahr</small>
+                        <div class="calc-big"><b data-out="save">0</b><span>€</span></div>
+                        <p class="calc-sub">Über 20 Jahre rund <b data-out="total">0 €</b> weniger Stromkosten</p>
+
+                        <div class="calc-bar" aria-hidden="true">
+                            <i data-out="bar"></i>
+                        </div>
+                        <div class="calc-legend">
+                            <span><i class="own"></i>Eigener Sonnenstrom</span>
+                            <span><i class="grid"></i>Aus dem Netz</span>
+                        </div>
+
+                        <div class="calc-stats">
+                            <div><small>Eigenversorgung</small><b data-out="autarky">0 %</b></div>
+                            <div><small>Amortisation</small><b data-out="years">–</b></div>
+                            <div><small>CO₂ pro Jahr</small><b data-out="co2">0 t</b></div>
+                        </div>
+
+                        <a href="contact.html" class="btn" data-calc-cta>
+                            Dieses Szenario anfragen
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <p class="calc-note reveal">Unverbindliche Schätzung mit Richtwerten für Ertrag, Einspeisevergütung (8 Cent/kWh) und Anschaffungskosten. Ihr genaues Angebot hängt von Dach, Ausrichtung und Verbrauch ab.</p>
+            </div>
+        </section>
+
         <!-- Über uns -->
         <section id="about-us" class="section">
             <div class="container about-grid">
@@ -441,6 +574,49 @@
                             <button type="button" class="btn btn-ghost" data-load-map>Karte anzeigen</button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Häufige Fragen -->
+        <section id="faq" class="section faq">
+            <div class="container faq-grid">
+                <div class="faq-head">
+                    <span class="eyebrow reveal">FAQ</span>
+                    <h2 class="section-title split-words">Häufige <span class="accent">Fragen</span></h2>
+                    <p class="section-lead reveal">Ihre Frage ist nicht dabei? Wir beraten Sie gerne persönlich.</p>
+                    <a href="contact.html" class="btn btn-ghost reveal">Frage stellen</a>
+                </div>
+
+                <div class="faq-list reveal">
+                    <details class="faq-item">
+                        <summary>Wie lange dauert die Installation einer PV-Anlage?</summary>
+                        <div class="faq-body"><p>Die Montage auf einem Einfamilienhaus ist in der Regel in wenigen Tagen erledigt. Inklusive Beratung, Planung und Anmeldung beim Netzbetreiber sollten Sie insgesamt mit einigen Wochen rechnen – den genauen Zeitplan besprechen wir mit Ihnen vorab.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Lohnt sich ein Stromspeicher?</summary>
+                        <div class="faq-body"><p>Ein Speicher hebt den Anteil Ihres selbst genutzten Sonnenstroms deutlich – besonders, wenn Sie abends und nachts viel verbrauchen. Ob und in welcher Größe er sich für Sie rechnet, hängt von Ihrem Verbrauch ab. Das rechnen wir gemeinsam mit Ihnen durch.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Kann ich mein E-Auto mit Sonnenstrom laden?</summary>
+                        <div class="faq-body"><p>Ja. Mit einer passenden Wallbox lädt Ihr Auto bevorzugt dann, wenn die PV-Anlage Überschuss produziert. Wir installieren die Wallbox und binden sie in Ihre Anlage ein.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Kann ich Smart Home auch nachrüsten?</summary>
+                        <div class="faq-body"><p>Ja. Viele Funktionen wie Licht-, Heizungs- oder Beschattungssteuerung lassen sich auch in bestehenden Gebäuden nachrüsten – oft mit Funklösungen und ohne große Stemmarbeiten.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Wann sollte meine Elektroanlage überprüft werden?</summary>
+                        <div class="faq-body"><p>Für Betriebe und vermietete Objekte gibt es gesetzliche Prüfpflichten. Auch privat ist eine Überprüfung sinnvoll – etwa beim Kauf oder Umbau eines Hauses oder wenn die Anlage schon viele Jahre alt ist. Wir prüfen Ihre Anlage und dokumentieren das Ergebnis.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Gibt es Förderungen?</summary>
+                        <div class="faq-body"><p>Für Photovoltaik, Speicher und Ladestationen gibt es immer wieder Förderungen von Bund, Land und Gemeinden. Die Bedingungen ändern sich regelmäßig – wir sagen Ihnen, was aktuell möglich ist, und unterstützen Sie beim Antrag.</p></div>
+                    </details>
+                    <details class="faq-item">
+                        <summary>Wie läuft eine Anfrage ab?</summary>
+                        <div class="faq-body"><p>Sie schreiben uns oder rufen an, wir melden uns zeitnah und vereinbaren einen Termin zur Beratung. Danach erhalten Sie ein Angebot – und wenn alles passt, kümmern wir uns um Planung, Installation und Wartung aus einer Hand.</p></div>
+                    </details>
                 </div>
             </div>
         </section>
@@ -514,6 +690,6 @@
         </div>
     </div>
 
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=6"></script>
 </body>
 </html>
